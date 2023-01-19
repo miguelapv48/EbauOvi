@@ -320,7 +320,7 @@ return [
         ],
         [
             'text' => 'Listar Noticias',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/noticias',
             'icon' => 'far fa-fw fa-file',
         ],
         [
