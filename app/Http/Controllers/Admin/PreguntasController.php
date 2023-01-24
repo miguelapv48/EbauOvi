@@ -21,8 +21,8 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias = Noticias::all();
-        return view("admin.noticias.index", compact("noticias"));
+        $preguntas = Noticias::all();
+        return view("admin.preguntas.index", compact("preguntas"));
     }
 
     /**
@@ -32,11 +32,11 @@ class NoticiasController extends Controller
      */
     public function create()
     {
-        $noticias = new Noticias;
-        $title = __("Crear Noticias");
+        $preguntas = new Preguntas;
+        $title = __("Crear Preguntass");
         $textButton = __("Crear");
-        $route = route("admin.noticias.store");
-        return view("admin.noticias.create",compact("title","textButton","route","noticias"));
+        $route = route("admin.preguntas.store");
+        return view("admin.preguntas.create",compact("title","textButton","route","preguntas"));
     }
 
     /**
@@ -48,13 +48,12 @@ class NoticiasController extends Controller
     public function store(Request $request) //Request recoge los datos del formulario
     {
         $this->validate($request, [
-            "titulo" => "required|max:140",
-            "descripcion" => "nullable|string|min:10",
+            "pregunta" => "required|max:140",
         ]);
         Noticias::create($request->only("titulo","descripcion"));
 
-        return redirect(route("admin.noticias.index"))
-        ->with("success",__("¡Noticia creada!"));
+        return redirect(route("admin.preguntas.index"))
+        ->with("success",__("¡Pregunta creada!"));
     }
 
     /**
@@ -74,13 +73,13 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noticias $noticia)
+    public function edit(Preguntas $pregunta)
     {
         $update = true;
-        $title = __("Editar Noticias");
-        $textButton = __("Actualizar Noticias");
-        $route = route("admin.noticias.update", ["noticias" => $noticia]);
-        return view("admin.noticias.edit", compact("update","title","textButton","route","noticias"));
+        $title = __("Editar Pregunta");
+        $textButton = __("Actualizar Pregunta");
+        $route = route("admin.preguntas.update", ["preguntass" => $pregunta]);
+        return view("admin.preguntas.edit", compact("update","title","textButton","route","preguntas"));
     }
 
     /**
@@ -90,14 +89,13 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Noticias $noticia)
+    public function update(Request $request, Preguntas $pregunta)
     {
         $this->validate($request, [
-            "titulo" => "required|unique:noticias,titulo," . $noticia->id,
-            "descripcion" => "nullable|string|min:10"
+            "pregunta" => "required|unique:preguntas,pregunta," . $pregunta->id,
         ]);
-        $noticias->fill($request->only("titulo", "descripcion"))->save();
-        return back()->with("success",__("¡Noticia actualizada!"));
+        $preguntas->fill($request->only("pregunta"))->save();
+        return back()->with("success",__("¡Pregunta actualizada!"));
     }
 
     /**
@@ -106,9 +104,9 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Noticias $noticia)
+    public function destroy(Preguntas $pregunta)
     {
-        $noticia->delete();
-        return back()->with("success",__("¡Noticia eliminada!"));
+        $pregunta->delete();
+        return back()->with("success",__("¡Pregunta eliminada!"));
     }
 }

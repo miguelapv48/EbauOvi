@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Noticias extends Authenticatable
+class Preguntas extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,8 +18,7 @@ class Noticias extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'titulo',
-        'descripcion',
+        'pregunta',
     ];
 
 }

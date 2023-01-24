@@ -50,5 +50,4 @@
             @endforelse
         </tbody>
     </table>
-
 @endsection
