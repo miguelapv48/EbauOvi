@@ -325,7 +325,7 @@ return [
         ],
         [
             'text' => ' Listar Preguntas',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/preguntas',
             'icon' => 'far fa-fw fa-file',
         ],
         [

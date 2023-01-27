@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Noticias;  
+use App\Models\Preguntas;  
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
-class NoticiasController extends Controller
+class PreguntasController extends Controller
 {
     public function __contruct(){
             $this->middleware('auth');
@@ -21,7 +20,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $preguntas = Noticias::all();
+        $preguntas = Preguntas::all();
         return view("admin.preguntas.index", compact("preguntas"));
     }
 
@@ -50,7 +49,7 @@ class NoticiasController extends Controller
         $this->validate($request, [
             "pregunta" => "required|max:140",
         ]);
-        Noticias::create($request->only("titulo","descripcion"));
+       Preguntas::create($request->only("pregunta"));
 
         return redirect(route("admin.preguntas.index"))
         ->with("success",__("¡Pregunta creada!"));
