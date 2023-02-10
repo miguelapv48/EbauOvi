@@ -20,7 +20,7 @@ class CreatePreguntasTable extends Migration
             $table->timestamps();
             $table->foreign('id_test')
                    ->references('id')
-                   ->on('test')
+                   ->on('tessts')
                    ->delete('cascade');
         });
     }

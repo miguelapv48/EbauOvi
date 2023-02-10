@@ -330,7 +330,12 @@ return [
         ],
         [
             'text' => ' Listar Test',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/tesst',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => ' Asignaturas',
+            'url'  => 'admin/asignaturas',
             'icon' => 'far fa-fw fa-file',
         ],
     ],

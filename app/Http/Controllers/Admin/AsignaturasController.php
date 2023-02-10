@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-use App\Models\Tesst;  
+use App\Models\Asignaturas;  
 use Illuminate\Support\Facades\Auth;
-
-class TesstController extends Controller
+class AsignaturasController extends Controller
 {
     public function __contruct(){
             $this->middleware('auth');
@@ -20,8 +18,8 @@ class TesstController extends Controller
      */
     public function index()
     {
-        $tesst = Tesst::all();
-        return view("admin.tesst.index",compact('tesst'));
+        $asignaturas = Asignaturas::all();
+        return view("admin.asignaturas.index",compact('asignaturas'));
     }
 
     /**
@@ -31,11 +29,11 @@ class TesstController extends Controller
      */
     public function create()
     {
-        $tesst = new Tesst;
-        $title = __("Crear Tesst");
-        $textButton = __("Crear");
-        $route = route("admin.tesst.store");
-        return view("admin.tesst.create",compact("title","textButton","route","tesst"));
+        $asignaturas = new Asignaturas;
+        $title = __("Crear Asignaturas");
+        $textButton = __("Crear Asignaturas");
+        $route = route("admin.asignaturas.store");
+        return view("admin.asignaturas.create",compact("title","textButton","route","asignaturas"));
     }
 
     /**
@@ -49,10 +47,10 @@ class TesstController extends Controller
         $this->validate($request, [
             "nombre" => "required|max:140",
         ]);
-       Tesst::create($request->only("tesst"));
+       Asignaturas::create($request->only("nombre"));
 
-        return redirect(route("admin.tesst.index"))
-        ->with("success",__("¡Test creado"));
+        return redirect(route("admin.asignaturas.index"))
+        ->with("success",__("¡Asignatura  creada"));
     }
 
     /**
@@ -72,13 +70,13 @@ class TesstController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tesst $tesst)
+    public function edit(Asignaturas $asignaturas)
     {
         $update = true;
-        $title = __("Editar Tesst");
-        $textButton = __("Actualizar Test");
-        $route = route("admin.tesst.update", ["tesst" => $tesst]);
-        return view("admin.tesst.edit", compact("update","title","textButton","route","tesst"));
+        $title = __("Editar Asignaturas");
+        $textButton = __("Actualizar Asignaturas");
+        $route = route("admin.asignaturas.update", ["asignaturas" => $asignaturas]);
+        return view("admin.asignaturas.edit", compact("update","title","textButton","route","asignaturas"));
     }
 
     /**
@@ -88,13 +86,13 @@ class TesstController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tesst $tesst)
+    public function update(Request $request, Asignaturas $asignaturas)
     {
         $this->validate($request, [
-            "nombre" => "required|unique:tesst,pregunta," . $tesst->id,
+            "nombre" => "required|unique:asignaturas" . $asignaturas->id,
         ]);
-        $preguntas->fill($request->only("tesst"))->save();
-        return back()->with("success",__("¡Test actualizado!"));
+        $asignaturas->fill($request->only("nombre"))->save();
+        return back()->with("success",__("¡Asignatura actualizada!"));
     }
 
     /**
@@ -103,9 +101,10 @@ class TesstController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tesst $tesst)
+    public function destroy(Asignaturas $asignaturas)
     {
-        $tesst->delete();
-        return back()->with("success",__("Test eliminado!"));
+        $asignaturas->delete();
+        return back()->with("success",__("Asignatura eliminada!"));
     }
 }
+
