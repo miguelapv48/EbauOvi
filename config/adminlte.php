@@ -334,8 +334,13 @@ return [
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => ' Asignaturas',
+            'text' => ' Listar Asignaturas',
             'url'  => 'admin/asignaturas',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => ' Listar Respuestas',
+            'url'  => 'admin/respuestas',
             'icon' => 'far fa-fw fa-file',
         ],
     ],

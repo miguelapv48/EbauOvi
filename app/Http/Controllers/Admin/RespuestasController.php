@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Models\Asignaturas;  
+use App\Models\Respuestas;  
 use Illuminate\Support\Facades\Auth;
-class AsignaturasController extends Controller
+
+class RespuestasController extends Controller
 {
     public function __contruct(){
             $this->middleware('auth');
@@ -18,8 +20,8 @@ class AsignaturasController extends Controller
      */
     public function index()
     {
-        $asignaturas = Asignaturas::all();
-        return view("admin.asignaturas.index",compact('asignaturas'));
+        $respuestas = Respuestas::all();
+        return view("admin.respuestas.index", compact("respuestas"));
     }
 
     /**
@@ -29,11 +31,11 @@ class AsignaturasController extends Controller
      */
     public function create()
     {
-        $asignatura = new Asignaturas;
-        $title = __("Crear Asignaturas");
-        $textButton = __("Crear Asignaturas");
-        $route = route("admin.asignaturas.store");
-        return view("admin.asignaturas.create",compact("title","textButton","route","asignatura"));
+        $respuestas = new Respuestas;
+        $title = __("Crear Respuestas");
+        $textButton = __("Crear");
+        $route = route("admin.respuestas.store");
+        return view("admin.respuestas.create",compact("title","textButton","route","respuestas"));
     }
 
     /**
@@ -45,12 +47,12 @@ class AsignaturasController extends Controller
     public function store(Request $request) //Request recoge los datos del formulario
     {
         $this->validate($request, [
-            "nombre" => "required|max:140",
+            "respuesta" => "required|max:140",
         ]);
-        Asignaturas::create($request->only("nombre"));
+       Respuestas::create($request->only("respuesta"));
 
-        return redirect(route("admin.asignaturas.index"))
-        ->with("success",__("¡Asignatura  creada"));
+        return redirect(route("admin.respuestas.index"))
+        ->with("success",__("¡Respuesta creada!"));
     }
 
     /**
@@ -70,13 +72,13 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asignaturas $asignatura)
+    public function edit(Respuestas $respuesta)
     {
         $update = true;
-        $title = __("Editar Asignaturas");
-        $textButton = __("Actualizar Asignaturas");
-        $route = route("admin.asignaturas.update", ["asignatura" => $asignatura]);
-        return view("admin.asignaturas.edit", compact("update","title","textButton","route","asignatura"));
+        $title = __("Editar Respuesta");
+        $textButton = __("Actualizar Respuesta");
+        $route = route("admin.respuestas.update", ["respuestas" => $respuesta]);
+        return view("admin.respuestas.edit", compact("update","title","textButton","route","respuestas"));
     }
 
     /**
@@ -86,14 +88,13 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asignaturas $asignatura)
+    public function update(Request $request, Respuestas $respuesta)
     {
         $this->validate($request, [
-            "nombre" => "required|unique:asignaturas"
+            "respuesta" => "required|unique:respuestas,respuesta," . $respuesta->id,
         ]);
-        $asignatura->fill($request->only("nombre"))->save();
-        return redirect(route("admin.asignaturas.index"))
-            ->with("success",__("¡Asignatura actualizada!"));
+        $preguntas->fill($request->only("respuesta"))->save();
+        return back()->with("success",__("¡Respuesta actualizada!"));
     }
 
     /**
@@ -102,10 +103,9 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asignaturas $asignaturas)
+    public function destroy(Respuestas $respuesta)
     {
-        $asignaturas->delete();
-        return back()->with("success",__("Asignatura eliminada!"));
+        $respuesta->delete();
+        return back()->with("success",__("¡Respuesta eliminada!"));
     }
 }
-
