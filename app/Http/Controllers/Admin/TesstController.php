@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Tesst;  
+use App\Models\Asignaturas;
 use Illuminate\Support\Facades\Auth;
 
 class TesstController extends Controller
@@ -32,10 +33,11 @@ class TesstController extends Controller
     public function create()
     {
         $tesst = new Tesst;
-        $title = __("Crear Tesst");
+        $title = __("Crear Test");
         $textButton = __("Crear");
         $route = route("admin.tesst.store");
-        return view("admin.tesst.create",compact("title","textButton","route","tesst"));
+        $asignaturas = Asignaturas::all();
+        return view("admin.tesst.create",compact("title","textButton","route","tesst","asignaturas"));
     }
 
     /**

@@ -21,4 +21,7 @@ class Asignaturas extends Authenticatable
         'nombre'
     ];
 
+    public function tesst(){
+        return $this->hasMany(Tesst::class);
+    }
 };

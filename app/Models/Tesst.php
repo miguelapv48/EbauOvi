@@ -21,4 +21,7 @@ class Tesst extends Authenticatable
         'nombre',
     ];
 
+    public function asignaturas(){
+        return $this->belongsTo(Asignaturas::class);
+    }
 }

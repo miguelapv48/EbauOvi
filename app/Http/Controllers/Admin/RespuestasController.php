@@ -33,6 +33,7 @@ class RespuestasController extends Controller
     {
         $respuestas = new Respuestas;
         $title = __("Crear Respuestas");
+        $respuestas = Respuestas::all();
         $textButton = __("Crear");
         $route = route("admin.respuestas.store");
         return view("admin.respuestas.create",compact("title","textButton","route","respuestas"));

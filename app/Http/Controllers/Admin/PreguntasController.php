@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Preguntas;  
+use App\Models\Tesst;
 use Illuminate\Support\Facades\Auth;
 
 class PreguntasController extends Controller
@@ -35,7 +36,8 @@ class PreguntasController extends Controller
         $title = __("Crear Preguntass");
         $textButton = __("Crear");
         $route = route("admin.preguntas.store");
-        return view("admin.preguntas.create",compact("title","textButton","route","preguntas"));
+        $tessts = Tesst::all();
+        return view("admin.preguntas.create",compact("title","textButton","route","preguntas","tessts"));
     }
 
     /**

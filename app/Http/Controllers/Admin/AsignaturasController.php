@@ -102,9 +102,9 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asignaturas $asignaturas)
+    public function destroy(Asignaturas $asignatura)
     {
-        $asignaturas->delete();
+        $asignatura->delete();
         return back()->with("success",__("Asignatura eliminada!"));
     }
 }
