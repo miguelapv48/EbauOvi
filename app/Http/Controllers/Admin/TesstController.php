@@ -50,8 +50,9 @@ class TesstController extends Controller
     {
         $this->validate($request, [
             "nombre" => "required|max:140",
+            "id_asignatura" => "required"
         ]);
-       Tesst::create($request->only("tesst"));
+        Tesst::create($request->only("nombre","id_asignatura"));
 
         return redirect(route("admin.tesst.index"))
         ->with("success",__("¡Test creado"));
@@ -93,7 +94,7 @@ class TesstController extends Controller
     public function update(Request $request, Tesst $tesst)
     {
         $this->validate($request, [
-            "nombre" => "required|unique:tesst,pregunta," . $tesst->id,
+            "nombre" => "required",
         ]);
         $preguntas->fill($request->only("tesst"))->save();
         return back()->with("success",__("¡Test actualizado!"));

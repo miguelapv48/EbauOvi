@@ -50,8 +50,9 @@ class PreguntasController extends Controller
     {
         $this->validate($request, [
             "pregunta" => "required|max:140",
+            "id_test" => "required"
         ]);
-       Preguntas::create($request->only("pregunta"));
+       Preguntas::create($request->only("pregunta","id_test"));
 
         return redirect(route("admin.preguntas.index"))
         ->with("success",__("¡Pregunta creada!"));
@@ -94,6 +95,7 @@ class PreguntasController extends Controller
     {
         $this->validate($request, [
             "pregunta" => "required|unique:preguntas,pregunta," . $pregunta->id,
+            "id_test" => "required"
         ]);
         $preguntas->fill($request->only("pregunta"))->save();
         return back()->with("success",__("¡Pregunta actualizada!"));

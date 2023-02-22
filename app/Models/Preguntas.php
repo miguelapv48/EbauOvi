@@ -11,14 +11,14 @@ use Laravel\Sanctum\HasApiTokens;
 class Preguntas extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'pregunta',
+        'pregunta','id_test'
     ];
 
 }
