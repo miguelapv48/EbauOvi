@@ -19,7 +19,7 @@ class CreateRespuestasTable extends Migration
             $table->unsignedBigInteger('id_pregunta');
             $table->foreign('id_pregunta')
                    ->references('id')
-                   ->on('asignaturas')
+                   ->on('preguntas')
                    ->delete('cascade');
         });
     }

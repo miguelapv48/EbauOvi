@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Respuestas;  
+use App\Models\Respuestas; 
+use App\Models\Preguntas; 
 use Illuminate\Support\Facades\Auth;
 
 class RespuestasController extends Controller
@@ -20,8 +21,9 @@ class RespuestasController extends Controller
      */
     public function index()
     {
+        $preguntas = Preguntas::all();
         $respuestas = Respuestas::all();
-        return view("admin.respuestas.index", compact("respuestas"));
+        return view("admin.respuestas.index", compact("respuestas","preguntas"));
     }
 
     /**
@@ -31,12 +33,12 @@ class RespuestasController extends Controller
      */
     public function create()
     {
-        $respuestas = new Respuestas;
+        $respuesta = new Respuestas;
         $title = __("Crear Respuestas");
-        $respuestas = Respuestas::all();
+        $preguntas = Preguntas::all();
         $textButton = __("Crear");
         $route = route("admin.respuestas.store");
-        return view("admin.respuestas.create",compact("title","textButton","route","respuestas"));
+        return view("admin.respuestas.create",compact("title","textButton","route","respuesta","preguntas"));
     }
 
     /**
@@ -50,7 +52,7 @@ class RespuestasController extends Controller
         $this->validate($request, [
             "respuesta" => "required|max:140",
         ]);
-       Respuestas::create($request->only("respuesta"));
+       Respuestas::create($request->only("id_pregunta","respuesta","correcta"));
 
         return redirect(route("admin.respuestas.index"))
         ->with("success",__("¡Respuesta creada!"));
@@ -78,8 +80,8 @@ class RespuestasController extends Controller
         $update = true;
         $title = __("Editar Respuesta");
         $textButton = __("Actualizar Respuesta");
-        $route = route("admin.respuestas.update", ["respuestas" => $respuesta]);
-        return view("admin.respuestas.edit", compact("update","title","textButton","route","respuestas"));
+        $route = route("admin.respuestas.update", ["respuesta" => $respuesta]);
+        return view("admin.respuestas.edit", compact("update","title","textButton","route","respuesta"));
     }
 
     /**
@@ -94,7 +96,7 @@ class RespuestasController extends Controller
         $this->validate($request, [
             "respuesta" => "required|unique:respuestas,respuesta," . $respuesta->id,
         ]);
-        $preguntas->fill($request->only("respuesta"))->save();
+        $respuesta->fill($request->only("respuesta"))->save();
         return back()->with("success",__("¡Respuesta actualizada!"));
     }
 

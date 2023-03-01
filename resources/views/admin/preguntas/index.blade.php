@@ -1,7 +1,7 @@
 @extends("adminlte::page")
 
 @section("content")
-    <div class="flex justify-center flex-wrap bg-blue-400 p-4 mt-5">
+    <div class="flex justify-center flex-wrap bg-blue-700 p-4 mt-5">
         <div class="text-center">
             <h1 class="mb-5">{{ __("Listado de Preguntas") }}</h1>
             <a href="{{ route('admin.preguntas.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
@@ -19,9 +19,9 @@
         <tbody>
             @forelse($preguntas as $pregunta)
                 <tr>
-                    <td class="border px-4 py-2">{{ $preguntas->pregunta }}</td>
+                    <td class="border px-4 py-2">{{ $pregunta->pregunta }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.preguntas.edit', ['preguntas' => $pregunta]) }}" class="text-blue-400">{{ __("Editar") }}</a> |
+                        <a href="{{ route('admin.preguntas.edit', ['pregunta' => $pregunta]) }}" class="text-blue-400">{{ __("Editar") }}</a> |
                         <a
                             href="#"
                             class="text-red-400"
@@ -29,7 +29,7 @@
                                 document.getElementById('delete-preguntas-{{ $pregunta->id }}-form').submit();"
                         >{{ __("Eliminar") }}
                         </a>
-                        <form id="delete-preguntas-{{ $pregunta->id }}-form" action="{{ route('admin.preguntas.destroy', ['preguntas' => $pregunta]) }}" method="POST" class="hidden">
+                        <form id="delete-preguntas-{{ $pregunta->id }}-form" action="{{ route('admin.preguntas.destroy', ['pregunta' => $pregunta]) }}" method="POST" class="hidden">
                             @method("DELETE")
                             @csrf
                         </form>

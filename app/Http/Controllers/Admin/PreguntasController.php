@@ -32,12 +32,12 @@ class PreguntasController extends Controller
      */
     public function create()
     {
-        $preguntas = new Preguntas;
-        $title = __("Crear Preguntass");
+        $pregunta = new Preguntas;
+        $title = __("Crear Preguntas");
         $textButton = __("Crear");
         $route = route("admin.preguntas.store");
         $tessts = Tesst::all();
-        return view("admin.preguntas.create",compact("title","textButton","route","preguntas","tessts"));
+        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","tessts"));
     }
 
     /**
@@ -80,8 +80,8 @@ class PreguntasController extends Controller
         $update = true;
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
-        $route = route("admin.preguntas.update", ["preguntass" => $pregunta]);
-        return view("admin.preguntas.edit", compact("update","title","textButton","route","preguntas"));
+        $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
+        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta"));
     }
 
     /**
@@ -94,10 +94,10 @@ class PreguntasController extends Controller
     public function update(Request $request, Preguntas $pregunta)
     {
         $this->validate($request, [
-            "pregunta" => "required|unique:preguntas,pregunta," . $pregunta->id,
+            "pregunta" => "required|unique",
             "id_test" => "required"
         ]);
-        $preguntas->fill($request->only("pregunta"))->save();
+        $pregunta->fill($request->only("pregunta"))->save();
         return back()->with("success",__("¡Pregunta actualizada!"));
     }
 
