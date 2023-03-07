@@ -14,6 +14,7 @@ class CreateRespuestasTable extends Migration
     public function up()
     {
         Schema::create('respuestas', function (Blueprint $table) {
+            $table->id();
             $table->string('respuesta');
             $table->string('correcta');
             $table->unsignedBigInteger('id_pregunta');

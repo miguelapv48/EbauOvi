@@ -80,8 +80,9 @@ class RespuestasController extends Controller
         $update = true;
         $title = __("Editar Respuesta");
         $textButton = __("Actualizar Respuesta");
+        $preguntas = Preguntas::all();
         $route = route("admin.respuestas.update", ["respuesta" => $respuesta]);
-        return view("admin.respuestas.edit", compact("update","title","textButton","route","respuesta"));
+        return view("admin.respuestas.edit", compact("update","title","textButton","route","respuesta","preguntas"));
     }
 
     /**

@@ -80,8 +80,9 @@ class PreguntasController extends Controller
         $update = true;
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
+        $tessts=Tesst::all();
         $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
-        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta"));
+        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts"));
     }
 
     /**

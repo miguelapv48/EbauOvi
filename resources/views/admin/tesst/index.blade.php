@@ -29,7 +29,7 @@
                                 document.getElementById('delete-tessts-{{ $test->id }}-form').submit();"
                         >{{ __("Eliminar") }}
                         </a>
-                        <form id="delete-preguntas-{{ $test->id }}-form" action="{{ route('admin.tesst.destroy', ['tesst' => $test]) }}" method="POST" class="hidden">
+                        <form id="delete-tessts-{{ $test->id }}-form" action="{{ route('admin.tesst.destroy', ['tesst' => $test]) }}" method="POST" class="hidden">
                             @method("DELETE")
                             @csrf
                         </form>

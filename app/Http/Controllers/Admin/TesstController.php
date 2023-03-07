@@ -81,7 +81,8 @@ class TesstController extends Controller
         $title = __("Editar Tesst");
         $textButton = __("Actualizar Test");
         $route = route("admin.tesst.update", ["tesst" => $tesst]);
-        return view("admin.tesst.edit", compact("update","title","textButton","route","tesst"));
+        $asignaturas=Asignaturas::all();
+        return view("admin.tesst.edit", compact("update","title","textButton","route","tesst","asignaturas"));
     }
 
     /**

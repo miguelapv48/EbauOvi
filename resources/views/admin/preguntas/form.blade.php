@@ -19,7 +19,7 @@
                 @foreach($tessts as $tesst)
                     <option value="{{ $tesst->id }}"
                     @isset($update)
-                        @if(id_test == $tesst->id_tesst)
+                        @if($pregunta->id_test == $tesst->id)
                             selected = "selected"
                         @endif
                     @endisset
