@@ -21,7 +21,7 @@ class CreateRespuestasTable extends Migration
             $table->foreign('id_pregunta')
                    ->references('id')
                    ->on('preguntas')
-                   ->delete('cascade');
+                   ->onDelete('cascade');
         });
     }
 

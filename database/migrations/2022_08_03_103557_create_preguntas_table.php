@@ -21,7 +21,7 @@ class CreatePreguntasTable extends Migration
             $table->foreign('id_test')
                    ->references('id')
                    ->on('tessts')
-                   ->delete('cascade');
+                   ->onDelete('cascade');
         });
     }
   

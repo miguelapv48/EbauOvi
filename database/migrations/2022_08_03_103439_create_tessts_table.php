@@ -21,7 +21,7 @@ class CreateTesstsTable extends Migration
             $table->foreign('id_asignatura')
                    ->references('id')
                    ->on('asignaturas')
-                   ->delete('cascade');
+                   ->onDelete('cascade');
         });
     }
 }
