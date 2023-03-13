@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AsignaturasController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::middleware([
 });
 
 Route::get('/asignaturas',[AsignaturasController::class,'index'])->name('asignaturas');
+Route::get('/tessts/{id}',[TestController::class,'index'])->name('tessts');
