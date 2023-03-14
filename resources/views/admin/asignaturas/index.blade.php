@@ -4,7 +4,7 @@
     <div class="flex justify-center flex-wrap bg-blue-400 p-4 mt-5">
         <div class="text-center">
             <h1 class="mb-5">{{ __("Listado de Asignaturas") }}</h1>
-            <a href="{{ route('admin.asignaturas.create') }}" class="bg- hover:bg-blue-500 text-blue-700 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <a href="{{ route('admin.asignaturas.create') }}" class="">
                 {{ __("Crear Asignatura") }}
             </a>
         </div>

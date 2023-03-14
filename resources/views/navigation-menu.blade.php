@@ -21,6 +21,13 @@
                         {{ __('Asignaturas') }}
                     </x-jet-nav-link>
                 </div>
+                @can('admin.home')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
+                        {{ __('Panel de Administrador') }}
+                    </x-jet-nav-link>
+                </div>
+                @endcan
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

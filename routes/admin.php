@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\TesstController;
 use App\Http\Controllers\Admin\AsignaturasController;
 use App\Http\Controllers\Admin\RespuestasController;
 
-Route::get('',[HomeController::class,'index']);
+Route::get('',[HomeController::class,'index'])->middleware('can:admin.home')->name('admin.home');
 
 Route::resource('users',UsuariosController::class)->names('admin.users');
 Route::resource('noticias',NoticiasController::class)->names('admin.noticias');

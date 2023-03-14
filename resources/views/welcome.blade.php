@@ -18,18 +18,18 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-            .imagen-fondo{
-                background: url("../../../imagenes/1.PNG") no-repeat center center fixed;
-                background-size: cover;
-            }
+
         </style>
     </head>
-    <body class="antialiased imagen-fondo">
+    <body class="imagen-fondo">
+   <center> <h1>Bienvenidos a EbauOvi</h1></center>
+    <img src="../../../imagenes/1.png" alt="ebauovi" width="100%" >
+        
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Inicio</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -39,7 +39,6 @@
                     @endauth
                 </div>
             @endif
-            <h1>EbauOvi</h1>
                 
         </div>
     </body>
