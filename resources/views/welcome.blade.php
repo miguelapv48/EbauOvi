@@ -18,23 +18,25 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-
+            h1 {
+                text-align: center;
+            }
+            
         </style>
     </head>
-    <body class="imagen-fondo">
-   <center> <h1>Bienvenidos a EbauOvi</h1></center>
+    <body>
     <img src="../../../imagenes/1.png" alt="ebauovi" width="100%" >
         
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-black-100 dark:bg-black-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Inicio</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-black-900 dark:text-black-900 underline">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-black-900 dark:text-gray-900 underline">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-black-900 dark:text-gray-500 underline">Register</a>
                         @endif
                     @endauth
                 </div>
