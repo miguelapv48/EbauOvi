@@ -3,7 +3,12 @@
         <h1 class="mb-5 px-300">{{ $title }}</h1>
     </div>
 </div>-->
-
+<style>
+    .respuestas{
+        color: blue;
+        margin: 20px;
+    }
+</style>
 <form class="w-full max-w-lg border-4" method="POST" action="{{ $route }}">
     @csrf
     @isset($update)
@@ -37,8 +42,17 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="titulo">
                 {{ __("Que tipo de pregunta") }}
             </label>
+            <br>
+            <div class="respuestas"><p><input type="text" option="a"></p></div>
+            <br>
+            <div class="respuestas"><p><input type="text" option="b"></p></div>
+            <br>
+            <div class="respuestas"><p><input type="text" option="c"></p></div>
+            <br>
+            <div class="respuestas"><p><input type="text" option="d"></p></div>
+            <br>
             <input name="pregunta" value="{{ old('pregunta') ?? $pregunta->pregunta }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="pregunta" type="text">
-            <p class="text-gray-600 text-xs italic -my-3">{{ __("Insertar pregunta") }}</p>
+            <p class="text-gray-900 text-xs italic -my-3">{{ __("Insertar pregunta") }}</p>
             @error("nombre")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}
@@ -56,3 +70,4 @@
         </div>
     </div>
 </form>
+
