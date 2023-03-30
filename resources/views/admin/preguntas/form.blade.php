@@ -8,6 +8,9 @@
         color: blue;
         margin: 20px;
     }
+    input[type=text]{
+        width: 70%;
+    }
 </style>
 <form class="w-full max-w-lg border-4" method="POST" action="{{ $route }}">
     @csrf
@@ -42,15 +45,6 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="titulo">
                 {{ __("Que tipo de pregunta") }}
             </label>
-            <br>
-            <div class="respuestas"><p><input type="text" option="a"></p></div>
-            <br>
-            <div class="respuestas"><p><input type="text" option="b"></p></div>
-            <br>
-            <div class="respuestas"><p><input type="text" option="c"></p></div>
-            <br>
-            <div class="respuestas"><p><input type="text" option="d"></p></div>
-            <br>
             <input name="pregunta" value="{{ old('pregunta') ?? $pregunta->pregunta }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="pregunta" type="text">
             <p class="text-gray-900 text-xs italic -my-3">{{ __("Insertar pregunta") }}</p>
             @error("nombre")
@@ -58,6 +52,15 @@
                 {{ $message }}
             </div>
             @enderror
+            <br>
+            <div class="respuestas">
+                <p>a) <input type="text" name="respuesta1"></p>
+                <p>b) <input type="text" name="respuesta2"></p>
+                <p>c) <input type="text" name="respuesta3"></p>
+                <p>d) <input type="text" name="respuesta4"></p>
+            </div>
+            <input type="submit"></input><br>
+            
         </div>
     </div>
         </div>

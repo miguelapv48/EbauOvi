@@ -52,7 +52,14 @@ class PreguntasController extends Controller
             "pregunta" => "required|max:140",
             "id_test" => "required"
         ]);
-       Preguntas::create($request->only("pregunta","id_test"));
+       $pregunta=Preguntas::create($request->only("pregunta","id_test"));
+
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4]);
+
+       $pregunta->save();
 
         return redirect(route("admin.preguntas.index"))
         ->with("success",__("¡Pregunta creada!"));

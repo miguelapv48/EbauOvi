@@ -21,4 +21,7 @@ class Preguntas extends Authenticatable
         'pregunta','id_test'
     ];
 
+    public function respuestas(){
+        return $this->hasMany(Respuestas::class);
+    }
 }

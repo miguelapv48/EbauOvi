@@ -21,4 +21,7 @@ class Respuestas extends Authenticatable
         'respuesta','correcta','id_pregunta'
     ];
 
+    public function pregunta(){
+        return $this->belongsTo(Preguntas::class);
+    }
 };
