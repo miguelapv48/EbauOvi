@@ -11,6 +11,9 @@
     input[type=text]{
         width: 70%;
     }
+    input[type=checkbox]{
+        width: 10%;
+    }
 </style>
 <form class="w-full max-w-lg border-4" method="POST" action="{{ $route }}">
     @csrf
@@ -53,11 +56,15 @@
             </div>
             @enderror
             <br>
+            @foreach($preguntas as $pregunta){
+                $respuesta->respuesta
+            };
+            @endforeach
             <div class="respuestas">
-                <p>a) <input type="text" name="respuesta1"></p>
-                <p>b) <input type="text" name="respuesta2"></p>
-                <p>c) <input type="text" name="respuesta3"></p>
-                <p>d) <input type="text" name="respuesta4"></p>
+                <p>a) <input type="text" name="respuesta1"><input type="checkbox" name="correcta1" value="correcta"></p>
+                <p>b) <input type="text" name="respuesta2"><input type="checkbox" name="correcta2" value="correcta"></p>
+                <p>c) <input type="text" name="respuesta3"><input type="checkbox" name="correcta3" value="correcta"></p>
+                <p>d) <input type="text" name="respuesta4"><input type="checkbox" name="correcta4" value="correcta"></p>
             </div>
             <input type="submit"></input><br>
             

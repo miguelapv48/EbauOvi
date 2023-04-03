@@ -54,10 +54,10 @@ class PreguntasController extends Controller
         ]);
        $pregunta=Preguntas::create($request->only("pregunta","id_test"));
 
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2, 'correcta' =>$request->correcta2]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3, 'correcta' =>$request->correcta3]);
+       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4, 'correcta' =>$request->correcta4]);
 
        $pregunta->save();
 
@@ -88,8 +88,9 @@ class PreguntasController extends Controller
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
         $tessts=Tesst::all();
+        $respuestas=Respuestas::where('pregunta_id','=', $pregunta->id());
         $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
-        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts"));
+        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts","respuestas"));
     }
 
     /**

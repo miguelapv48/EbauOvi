@@ -338,11 +338,6 @@ return [
             'url'  => 'admin/asignaturas',
             'icon' => 'far fa-fw fa-file',
         ],
-        [
-            'text' => ' Listar Respuestas',
-            'url'  => 'admin/respuestas',
-            'icon' => 'far fa-fw fa-file',
-        ],
     ],
 
     /*
