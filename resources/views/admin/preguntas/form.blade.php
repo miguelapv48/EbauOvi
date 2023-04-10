@@ -56,9 +56,9 @@
             </div>
             @enderror
             <br>
-            @foreach($preguntas as $pregunta){
-                $respuesta->respuesta
-            };
+            {{ $respuestas }}
+            @foreach($respuestas as $respuesta)
+                {{ $respuesta->respuesta }}
             @endforeach
             <div class="respuestas">
                 <p>a) <input type="text" name="respuesta1"><input type="checkbox" name="correcta1" value="correcta"></p>

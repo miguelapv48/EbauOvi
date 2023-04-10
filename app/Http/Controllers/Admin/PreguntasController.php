@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Preguntas;  
 use App\Models\Tesst;
+use App\Models\Respuestas; 
 use Illuminate\Support\Facades\Auth;
 
 class PreguntasController extends Controller
@@ -88,7 +89,8 @@ class PreguntasController extends Controller
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
         $tessts=Tesst::all();
-        $respuestas=Respuestas::where('pregunta_id','=', $pregunta->id());
+        $respuestas=Respuestas::where('preguntas_id','=', $pregunta->id);
+        dd($respuestas);
         $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
         return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts","respuestas"));
     }
