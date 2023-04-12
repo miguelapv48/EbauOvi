@@ -56,16 +56,23 @@
             </div>
             @enderror
             <br>
-            {{ $respuestas }}
-            @foreach($respuestas as $respuesta)
-                {{ $respuesta->respuesta }}
-            @endforeach
+            {{$i=1}}
+            @forelse($respuestas as $respuesta)
+                <p>{{$i}}) <input type="text" name="respuesta{{$i}}" value="{{ $respuesta->respuesta }}">
+                    <input type="checkbox" name="correcta{{$i}}" value="correcta"
+                    @if($respuesta->correcta =="correcta")
+                        checked
+                    @endif
+                    ></p>
+                {{$i++}}
+            @empty
             <div class="respuestas">
                 <p>a) <input type="text" name="respuesta1"><input type="checkbox" name="correcta1" value="correcta"></p>
                 <p>b) <input type="text" name="respuesta2"><input type="checkbox" name="correcta2" value="correcta"></p>
                 <p>c) <input type="text" name="respuesta3"><input type="checkbox" name="correcta3" value="correcta"></p>
                 <p>d) <input type="text" name="respuesta4"><input type="checkbox" name="correcta4" value="correcta"></p>
             </div>
+            @endforelse
             <input type="submit"></input><br>
             
         </div>

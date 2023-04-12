@@ -89,8 +89,8 @@ class PreguntasController extends Controller
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
         $tessts=Tesst::all();
-        $respuestas=Respuestas::where('preguntas_id','=', $pregunta->id);
-        dd($respuestas);
+        $respuestas=Respuestas::where('preguntas_id','=', $pregunta->id)->get();
+        //dd($respuestas);
         $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
         return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts","respuestas"));
     }
