@@ -63,7 +63,7 @@
                     @if($respuesta->correcta =="correcta")
                         checked
                     @endif
-                    ></p>
+                    </p>
                 {{$i++}}
             @empty
             <div class="respuestas">

@@ -106,9 +106,11 @@ class PreguntasController extends Controller
     {
         $this->validate($request, [
             "pregunta" => "required|unique",
-            "id_test" => "required"
+            //"id_test" => "required"
         ]);
         $pregunta->fill($request->only("pregunta"))->save();
+
+        $pregunta->respuestas()->fill(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1])->save();
         return back()->with("success",__("¡Pregunta actualizada!"));
     }
 
