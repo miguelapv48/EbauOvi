@@ -51,7 +51,7 @@ class NoticiasController extends Controller
             "titulo" => "required|max:140",
             "descripcion" => "nullable|string|min:10",
         ]);
-        Noticias::create($request->only("titulo","descripcion"));
+        Noticias::create($request->only("usuario_id","titulo","descripcion"));
 
         return redirect(route("admin.noticias.index"))
         ->with("success",__("¡Noticia creada!"));

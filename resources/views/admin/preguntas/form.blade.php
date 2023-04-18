@@ -73,8 +73,6 @@
                 <p>d) <input type="text" name="respuesta4"><input type="checkbox" name="correcta4" value="correcta"></p>
             </div>
             @endforelse
-            <input type="submit"></input><br>
-            
         </div>
     </div>
         </div>

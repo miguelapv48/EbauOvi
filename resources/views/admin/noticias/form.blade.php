@@ -10,6 +10,14 @@
         @method("PUT")
     @endisset
      <h1 class="font-semibold py-5 text-blue mb-10 bg-blue-900 text-white px-5">{{ $title }} </h1>
+
+     <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-5">
+            <input name="usuario_id" value="{{ auth()->id() }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="usuario_id" type="hidden">
+            
+        </div>
+    </div>
+
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-5">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="titulo">

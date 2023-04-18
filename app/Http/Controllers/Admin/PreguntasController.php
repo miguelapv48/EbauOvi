@@ -38,7 +38,8 @@ class PreguntasController extends Controller
         $textButton = __("Crear");
         $route = route("admin.preguntas.store");
         $tessts = Tesst::all();
-        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","tessts"));
+        $respuestas = [];
+        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","tessts","respuestas"));
     }
 
     /**
@@ -105,12 +106,20 @@ class PreguntasController extends Controller
     public function update(Request $request, Preguntas $pregunta)
     {
         $this->validate($request, [
-            "pregunta" => "required|unique",
-            //"id_test" => "required"
+            "pregunta" => "required",
+            "id_test" => "required"
         ]);
         $pregunta->fill($request->only("pregunta"))->save();
 
-        $pregunta->respuestas()->fill(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1])->save();
+        $pregunta->respuestas()->delete();
+
+        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1]);
+        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2, 'correcta' =>$request->correcta2]);
+        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3, 'correcta' =>$request->correcta3]);
+        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4, 'correcta' =>$request->correcta4]);
+
+        $pregunta->save();
+
         return back()->with("success",__("¡Pregunta actualizada!"));
     }
 

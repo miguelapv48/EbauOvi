@@ -20,6 +20,7 @@ class Noticias extends Authenticatable
     protected $fillable = [
         'titulo',
         'descripcion',
+        'usuario_id'
     ];
-
+    public $timestamps = false;
 }
