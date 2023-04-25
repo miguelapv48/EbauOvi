@@ -24,17 +24,16 @@
 
                     <td>{{ $user->email }}</td>
 
-                    <td>{{ date_format($user->created_at, "d/m/Y") }}</td>
 
                     <td class="border px-4 py-2">
                         <a
                             href="#"
                             class="btn btn-danger text-red-400"
                             onclick="event.preventDefault();
-                                document.getElementById('delete-concierto-{{ $user->id }}-form').submit();"
+                                document.getElementById('delete-usuario-{{ $user->id }}-form').submit();"
                         >{{ __("Eliminar") }}
                         </a>
-                        <form id="delete-concierto-{{ $user->id }}-form" action="{{ route('admin.users.destroy', ['user' => $user]) }}" method="POST" class="hidden">
+                        <form id="delete-usuario-{{ $user->id }}-form" action="{{ route('admin.users.destroy', ['user' => $user]) }}" method="POST" class="hidden">
                             @method("DELETE")
                             @csrf
                         </form>
