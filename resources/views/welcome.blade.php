@@ -25,7 +25,7 @@
         </style>
     </head>
     <body>
-    <img src="../../../imagenes/1.png" alt="ebauovi" width="100%" >
+    <img src="/imagenes/1.png" alt="ebauovi" width="100%" >
         
         <div class="relative flex items-top justify-center min-h-screen bg-black-100 dark:bg-black-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
