@@ -11,7 +11,7 @@
                <p> @foreach($preguntas as $pregunta)</p>
                     <a href="">{{ $pregunta->pregunta }}</a>
                     @foreach($pregunta->respuestas as $respuestas)
-                        {{ $respuestas->respuesta }}
+                        <p>{{ $respuestas->respuesta }}</p>
                     @endforeach
                 @endforeach
             </div>
