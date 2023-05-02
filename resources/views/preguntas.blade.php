@@ -7,9 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @foreach($preguntas as $pregunta)
+            <div class="bg-blue overflow-hidden shadow-xl sm:rounded-lg">
+               <p> @foreach($preguntas as $pregunta)</p>
                     <a href="">{{ $pregunta->pregunta }}</a>
+                    @foreach($pregunta->respuestas as $respuestas)
+                        {{ $respuestas->respuesta }}
+                    @endforeach
                 @endforeach
             </div>
         </div>
