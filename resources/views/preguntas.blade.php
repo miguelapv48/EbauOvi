@@ -10,8 +10,8 @@
             <div class="bg-blue overflow-hidden shadow-xl sm:rounded-lg">
                <p> @foreach($preguntas as $pregunta)</p>
                     <a href="">{{ $pregunta->pregunta }}</a>
-                    @foreach($pregunta->respuestas as $respuestas)
-                        <p>{{ $respuestas->respuesta }}</p>
+                  <p>  @foreach($pregunta->respuestas as $respuestas)</p>
+                      <p>  {{ $respuestas->respuesta }}</p>
                     @endforeach
                 @endforeach
             </div>
