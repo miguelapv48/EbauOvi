@@ -13,10 +13,8 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        {
-            $noticias = Noticias::all();
-            return view("noticias.index", compact("noticias"));
-        }
+        $noticias = Noticias::all()->latest("id");
+        return view("noticias.index", compact("noticias"));
     }
 
     /**

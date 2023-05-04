@@ -32,11 +32,11 @@ class NoticiasController extends Controller
      */
     public function create()
     {
-        $noticias = new Noticias;
+        $noticia = new Noticias;
         $title = __("Crear Noticias");
         $textButton = __("Crear");
         $route = route("admin.noticias.store");
-        return view("admin.noticias.create",compact("title","textButton","route","noticias"));
+        return view("admin.noticias.create",compact("title","textButton","route","noticia"));
     }
 
     /**
@@ -49,7 +49,7 @@ class NoticiasController extends Controller
     {
         $this->validate($request, [
             "titulo" => "required|max:140",
-            "descripcion" => "nullable|string|min:10",
+            "descripcion" => "|string|min:10",
         ]);
         Noticias::create($request->only("usuario_id","titulo","descripcion"));
 
@@ -79,8 +79,8 @@ class NoticiasController extends Controller
         $update = true;
         $title = __("Editar Noticias");
         $textButton = __("Actualizar Noticias");
-        $route = route("admin.noticias.update", ["noticias" => $noticia]);
-        return view("admin.noticias.edit", compact("update","title","textButton","route","noticias"));
+        $route = route("admin.noticias.update", ["noticia" => $noticia]);
+        return view("admin.noticias.edit", compact("update","title","textButton","route","noticia"));
     }
 
     /**
@@ -96,7 +96,7 @@ class NoticiasController extends Controller
             "titulo" => "required|unique:noticias,titulo," . $noticia->id,
             "descripcion" => "nullable|string|min:10"
         ]);
-        $noticias->fill($request->only("titulo", "descripcion"))->save();
+        $noticia->fill($request->only("titulo", "descripcion"))->save();
         return back()->with("success",__("¡Noticia actualizada!"));
     }
 
