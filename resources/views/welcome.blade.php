@@ -21,22 +21,25 @@
             h1 {
                 text-align: center;
             }
-            
+            a{
+                color: white;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
     <img src="/imagenes/1.png" alt="ebauovi" width="100%" >
         
-        <div class="relative flex items-top justify-center min-h-screen bg-black-100 dark:bg-white-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-white bg-white sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-black-900 dark:text-white-900 underline">Inicio</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-black-900 dark:text-gray-900 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm underline">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-white-900 dark:text-gray-500 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm underline">Register</a>
                         @endif
                     @endauth
                 </div>
