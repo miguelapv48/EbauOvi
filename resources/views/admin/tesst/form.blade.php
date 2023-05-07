@@ -13,21 +13,21 @@
     
      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-5">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="id_asignatura">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="asignatura_id">
                 {{ __("Asignatura") }}
             </label>
-            <select name="id_asignatura">
+            <select name="asignatura_id">
                 @foreach($asignaturas as $asignatura)
                     <option value="{{ $asignatura->id }}"
                     @isset($update)
-                        @if($asignatura->id == $examen->id_asignatura)
+                        @if($asignatura->id == $examen->asignatura_id)
                             selected = "selected"
                         @endif
                     @endisset
                     >{{ $asignatura->nombre }}</option>
                 @endforeach
             </select>
-            @error("id_asignatura")
+            @error("asignatura_id")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                 {{ $message }}
             </div>

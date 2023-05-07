@@ -15,7 +15,7 @@ class ExamenController extends Controller
      */
     public function index(int $id)
     {
-        $tests = Examen::where('id_asignatura', '=', $id);
+        $tests = Examen::where('asignatura_id', '=', $id);
 
         return view('examenes', compact('tests'));
     }

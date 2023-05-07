@@ -50,9 +50,9 @@ class ExamenController extends Controller
     {
         $this->validate($request, [
             "nombre" => "required|max:140",
-            "id_asignatura" => "required"
+            "asignatura_id" => "required"
         ]);
-        Examen::create($request->only("nombre","id_asignatura"));
+        Examen::create($request->only("nombre","asignatura_id"));
 
         return redirect(route("admin.examen.index"))
         ->with("success",__("¡Test creado"));

@@ -17,13 +17,17 @@ class Examen extends Model
      */
     protected $fillable = [
         'nombre',
-        'id_asignatura'
+        'asignatura_id'
     ];
 
     protected $table = "examenes";
 
-    public function asignaturas()
+    public function asignatura()
     {
         return $this->belongsTo(Asignatura::class);
+    }
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class);
     }
 }
