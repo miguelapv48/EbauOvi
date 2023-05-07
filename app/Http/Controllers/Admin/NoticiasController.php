@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Noticias;  
+use App\Models\Noticias;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class NoticiasController extends Controller
 {
-    public function __contruct(){
-            $this->middleware('auth');
-        }
+    public function __contruct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +37,7 @@ class NoticiasController extends Controller
         $title = __("Crear Noticias");
         $textButton = __("Crear");
         $route = route("admin.noticias.store");
-        return view("admin.noticias.create",compact("title","textButton","route","noticia"));
+        return view("admin.noticias.create", compact("title", "textButton", "route", "noticia"));
     }
 
     /**
@@ -51,10 +52,11 @@ class NoticiasController extends Controller
             "titulo" => "required|max:140",
             "descripcion" => "|string|min:10",
         ]);
-        Noticias::create($request->only("usuario_id","titulo","descripcion"));
+        Noticias::create($request->only("usuario_id", "titulo", "descripcion"));
+
 
         return redirect(route("admin.noticias.index"))
-        ->with("success",__("¡Noticia creada!"));
+            ->with("success", __("¡Noticia creada!"));
     }
 
     /**
@@ -80,7 +82,7 @@ class NoticiasController extends Controller
         $title = __("Editar Noticias");
         $textButton = __("Actualizar Noticias");
         $route = route("admin.noticias.update", ["noticia" => $noticia]);
-        return view("admin.noticias.edit", compact("update","title","textButton","route","noticia"));
+        return view("admin.noticias.edit", compact("update", "title", "textButton", "route", "noticia"));
     }
 
     /**
@@ -97,7 +99,7 @@ class NoticiasController extends Controller
             "descripcion" => "nullable|string|min:10"
         ]);
         $noticia->fill($request->only("titulo", "descripcion"))->save();
-        return back()->with("success",__("¡Noticia actualizada!"));
+        return back()->with("success", __("¡Noticia actualizada!"));
     }
 
     /**
@@ -109,6 +111,6 @@ class NoticiasController extends Controller
     public function destroy(Noticias $noticia)
     {
         $noticia->delete();
-        return back()->with("success",__("¡Noticia eliminada!"));
+        return back()->with("success", __("¡Noticia eliminada!"));
     }
 }
