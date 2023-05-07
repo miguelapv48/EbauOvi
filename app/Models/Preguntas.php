@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class Preguntas extends Authenticatable
+class Preguntas extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
@@ -18,10 +15,12 @@ class Preguntas extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'pregunta','id_test'
+        'pregunta',
+        'id_test'
     ];
 
-    public function respuestas(){
+    public function respuestas()
+    {
         return $this->hasMany(Respuestas::class);
     }
 }

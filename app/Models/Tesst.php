@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class Tesst extends Authenticatable
+
+class Tesst extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
@@ -18,10 +16,12 @@ class Tesst extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombre', 'id_asignatura'
+        'nombre',
+        'id_asignatura'
     ];
 
-    public function asignaturas(){
+    public function asignaturas()
+    {
         return $this->belongsTo(Asignaturas::class);
     }
 }
