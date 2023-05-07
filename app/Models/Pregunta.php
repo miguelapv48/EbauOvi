@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Asignaturas extends Model
+class Pregunta extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -15,12 +15,12 @@ class Asignaturas extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombre'
+        'titulo',
+        'examen_id'
     ];
 
-    public function tesst()
+    public function respuestas()
     {
-        return $this->hasMany(Tesst::class);
+        return $this->hasMany(Respuesta::class);
     }
 }
-;

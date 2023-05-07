@@ -16,9 +16,9 @@ class CreateRespuestasTable extends Migration
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
             $table->string('respuesta');
-            $table->string('correcta')->nullable();
-            $table->unsignedBigInteger('preguntas_id');
-            $table->foreign('preguntas_id')
+            $table->boolean('correcta');
+            $table->unsignedBigInteger('pregunta_id');
+            $table->foreign('pregunta_id')
                    ->references('id')
                    ->on('preguntas')
                    ->onDelete('cascade');

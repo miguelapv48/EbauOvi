@@ -3,9 +3,9 @@
 @section("content")
     <div class="flex justify-center flex-wrap bg-blue-700 p-4 mt-5">
         <div class="text-center">
-            <h1 class="mb-5">{{ __("Listado de Preguntas") }}</h1>
+            <h1 class="mb-5">{{ __("Listado de Pregunta") }}</h1>
             <a href="{{ route('admin.preguntas.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                {{ __("Crear Preguntas") }}
+                {{ __("Crear Pregunta") }}
             </a>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <tbody>
             @forelse($preguntas as $pregunta)
                 <tr>
-                    <td class="border px-4 py-2">{{ $pregunta->pregunta }}</td>
+                    <td class="border px-4 py-2">{{ $pregunta->titulo }}</td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.preguntas.edit', ['pregunta' => $pregunta]) }}" class="text-blue-400">{{ __("Editar") }}</a> |
                         <a

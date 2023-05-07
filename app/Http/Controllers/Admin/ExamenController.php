@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use App\Models\Asignaturas;  
+use App\Models\Examen;  
+use App\Models\Asignatura;
 use Illuminate\Support\Facades\Auth;
-class AsignaturasController extends Controller
+
+class ExamenController extends Controller
 {
     public function __contruct(){
             $this->middleware('auth');
@@ -18,8 +21,8 @@ class AsignaturasController extends Controller
      */
     public function index()
     {
-        $asignaturas = Asignaturas::all();
-        return view("admin.asignaturas.index",compact('asignaturas'));
+        $examen = Examen::all();
+        return view("admin.examen.index",compact('examen'));
     }
 
     /**
@@ -29,11 +32,12 @@ class AsignaturasController extends Controller
      */
     public function create()
     {
-        $asignatura = new Asignaturas;
-        $title = __("Crear Asignaturas");
-        $textButton = __("Crear Asignaturas");
-        $route = route("admin.asignaturas.store");
-        return view("admin.asignaturas.create",compact("title","textButton","route","asignatura"));
+        $examen = new Examen;
+        $title = __("Crear Test");
+        $textButton = __("Crear");
+        $route = route("admin.examen.store");
+        $asignaturas = Asignatura::all();
+        return view("admin.examen.create",compact("title","textButton","route","examen","asignaturas"));
     }
 
     /**
@@ -46,11 +50,12 @@ class AsignaturasController extends Controller
     {
         $this->validate($request, [
             "nombre" => "required|max:140",
+            "id_asignatura" => "required"
         ]);
-        Asignaturas::create($request->only("nombre"));
+        Examen::create($request->only("nombre","id_asignatura"));
 
-        return redirect(route("admin.asignaturas.index"))
-        ->with("success",__("¡Asignatura  creada"));
+        return redirect(route("admin.examen.index"))
+        ->with("success",__("¡Test creado"));
     }
 
     /**
@@ -70,13 +75,14 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asignaturas $asignatura)
+    public function edit(Examen $examen)
     {
         $update = true;
-        $title = __("Editar Asignaturas");
-        $textButton = __("Actualizar Asignaturas");
-        $route = route("admin.asignaturas.update", ["asignatura" => $asignatura]);
-        return view("admin.asignaturas.edit", compact("update","title","textButton","route","asignatura"));
+        $title = __("Editar Examen");
+        $textButton = __("Actualizar Test");
+        $route = route("admin.examen.update", ["examen" => $examen]);
+        $asignaturas=Asignatura::all();
+        return view("admin.examen.edit", compact("update","title","textButton","route","examen","asignaturas"));
     }
 
     /**
@@ -86,14 +92,13 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asignaturas $asignatura)
+    public function update(Request $request, Examen $examen)
     {
         $this->validate($request, [
-            "nombre" => "required|unique:asignaturas"
+            "nombre" => "required",
         ]);
-        $asignatura->fill($request->only("nombre"))->save();
-        return redirect(route("admin.asignaturas.index"))
-            ->with("success",__("¡Asignatura actualizada!"));
+        $preguntas->fill($request->only("examen"))->save();
+        return back()->with("success",__("¡Test actualizado!"));
     }
 
     /**
@@ -102,10 +107,9 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asignaturas $asignatura)
+    public function destroy(Examen $examen)
     {
-        $asignatura->delete();
-        return back()->with("success",__("Asignatura eliminada!"));
+        $examen->delete();
+        return back()->with("success",__("Test eliminado!"));
     }
 }
-

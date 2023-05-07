@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Asignaturas;
+use App\Models\Asignatura;
 
-class AsignaturasController extends Controller
+class AsignaturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AsignaturasController extends Controller
      */
     public function index()
     {
-        $asignaturas = Asignaturas::all();
+        $asignaturas = Asignatura::all();
         return view('asignaturas', compact('asignaturas'));
     }
 }

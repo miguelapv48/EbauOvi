@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Tesst;
+use App\Models\Examen;
 
-class TestController extends Controller
+class ExamenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class TestController extends Controller
      */
     public function index(int $id)
     {
-        $tests = Tesst::where('id_asignatura', '=', $id);
+        $tests = Examen::where('id_asignatura', '=', $id);
 
-        return view('tessts', compact('tests'));
+        return view('examenes', compact('tests'));
     }
 
 }

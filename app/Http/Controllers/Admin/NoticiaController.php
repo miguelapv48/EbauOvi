@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Noticias;
+use App\Models\Noticia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class NoticiasController extends Controller
+class NoticiaController extends Controller
 {
     public function __contruct()
     {
@@ -22,7 +22,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias = Noticias::all();
+        $noticias = Noticia::all();
         return view("admin.noticias.index", compact("noticias"));
     }
 
@@ -33,8 +33,8 @@ class NoticiasController extends Controller
      */
     public function create()
     {
-        $noticia = new Noticias;
-        $title = __("Crear Noticias");
+        $noticia = new Noticia;
+        $title = __("Crear Noticia");
         $textButton = __("Crear");
         $route = route("admin.noticias.store");
         return view("admin.noticias.create", compact("title", "textButton", "route", "noticia"));
@@ -52,7 +52,7 @@ class NoticiasController extends Controller
             "titulo" => "required|max:140",
             "descripcion" => "|string|min:10",
         ]);
-        Noticias::create($request->only("usuario_id", "titulo", "descripcion"));
+        Noticia::create($request->only("user_id", "titulo", "descripcion"));
 
 
         return redirect(route("admin.noticias.index"))
@@ -76,11 +76,11 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noticias $noticia)
+    public function edit(Noticia $noticia)
     {
         $update = true;
-        $title = __("Editar Noticias");
-        $textButton = __("Actualizar Noticias");
+        $title = __("Editar Noticia");
+        $textButton = __("Actualizar Noticia");
         $route = route("admin.noticias.update", ["noticia" => $noticia]);
         return view("admin.noticias.edit", compact("update", "title", "textButton", "route", "noticia"));
     }
@@ -92,7 +92,7 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Noticias $noticia)
+    public function update(Request $request, Noticia $noticia)
     {
         $this->validate($request, [
             "titulo" => "required|unique:noticias,titulo," . $noticia->id,
@@ -108,7 +108,7 @@ class NoticiasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Noticias $noticia)
+    public function destroy(Noticia $noticia)
     {
         $noticia->delete();
         return back()->with("success", __("¡Noticia eliminada!"));

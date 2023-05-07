@@ -3,7 +3,7 @@
 @section("content")
     <div class="flex justify-center flex-wrap bg-blue-400 p-4 mt-5">
         <div class="text-center">
-            <h1 class="mb-5">{{ __("Listado de Asignaturas") }}</h1>
+            <h1 class="mb-5">{{ __("Listado de Asignatura") }}</h1>
             <a href="{{ route('admin.asignaturas.create') }}" class="">
                 {{ __("Crear Asignatura") }}
             </a>
@@ -13,7 +13,7 @@
     <table class="border-separate border-2 text-center border-gray-500 mt-3" style="width: 100%">
         <thead>
         <tr>
-            <th class="px-4 py-2">{{ __("Asignaturas") }}</th>
+            <th class="px-4 py-2">{{ __("Asignatura") }}</th>
         </tr>
         </thead>
         <tbody>

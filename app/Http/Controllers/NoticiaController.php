@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Noticias;
-class NoticiasController extends Controller
+use App\Models\Noticia;
+class NoticiaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        $noticias = Noticias::all();
+        $noticias = Noticia::all();
         return view("noticias.index", compact("noticias"));
     }
 

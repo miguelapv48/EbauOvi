@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-blue overflow-hidden shadow-xl sm:rounded-lg">
                <p> @foreach($preguntas as $pregunta)</p>
-                    <a href="">{{ $pregunta->pregunta }}</a>
+                    <a href="">{{ $pregunta->titulo }}</a>
                   <p>  @foreach($pregunta->respuestas as $respuestas)</p>
                       <p>  {{ $respuestas->respuesta }}</p>
                     @endforeach

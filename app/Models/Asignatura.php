@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Respuestas extends Model
+class Asignatura extends Model
 {
     use HasFactory;
     public $timestamps = false;
@@ -15,14 +15,12 @@ class Respuestas extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'respuesta',
-        'correcta',
-        'id_pregunta'
+        'nombre'
     ];
 
-    public function pregunta()
+    public function examen()
     {
-        return $this->belongsTo(Preguntas::class);
+        return $this->hasMany(Examen::class);
     }
 }
 ;

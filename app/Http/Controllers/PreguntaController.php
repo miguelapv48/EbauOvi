@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Preguntas;
+use App\Models\Pregunta;
 
-class PreguntasController extends Controller
+class PreguntaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PreguntasController extends Controller
      */
     public function index(int $id)
     {
-        $preguntas = Preguntas::where('id_test', '=', $id);
+        $preguntas = Pregunta::where('examen_id', '=', $id);
         return view('preguntas', compact('preguntas'));
     }
 }

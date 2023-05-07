@@ -20,7 +20,7 @@
                 @foreach($asignaturas as $asignatura)
                     <option value="{{ $asignatura->id }}"
                     @isset($update)
-                        @if($asignatura->id == $tesst->id_asignatura)
+                        @if($asignatura->id == $examen->id_asignatura)
                             selected = "selected"
                         @endif
                     @endisset
@@ -40,7 +40,7 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold -my-1 mb-3" for="titulo">
                 {{ __("Que tipo de test") }}
             </label>
-            <input name="nombre" value="{{ old('nombre') ?? $tesst->nombre }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="nombre" type="text">
+            <input name="nombre" value="{{ old('nombre') ?? $examen->nombre }}" class="appearance-none block w-full bg-gray-300 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="nombre" type="text">
             <p class="text-gray-600 text-xs italic -my-3">{{ __("Insertar test") }}</p>
             @error("nombre")
             <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">

@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Tesst extends Model
+class Noticia extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombre',
-        'id_asignatura'
+        'titulo',
+        'descripcion',
+        'user_id'
     ];
-
-    public function asignaturas()
-    {
-        return $this->belongsTo(Asignaturas::class);
-    }
+    public $timestamps = false;
 }

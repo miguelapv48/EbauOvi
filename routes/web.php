@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\AsignaturasController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\PreguntasController;
-use App\Http\Controllers\NoticiasController;
-
+use App\Http\Controllers\AsignaturaController;
+use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\NoticiaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,9 +19,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
 
-Route::get('/asignaturas',[AsignaturasController::class,'index'])->name('asignaturas');
-Route::get('/tessts/{id}',[TestController::class,'index'])->name('tessts');
-Route::get('/preguntas/{id}',[PreguntasController::class,'index'])->name('preguntas');
-Route::get('/noticias',[NoticiasController::class,'index'])->name('noticias');
+    Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas');
+    Route::get('/examenes/{id}', [ExamenController::class, 'index'])->name('examenes');
+    Route::get('/preguntas/{id}', [PreguntaController::class, 'index'])->name('preguntas');
+    Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
+    Route::get('/examenes', [NoticiaController::class, 'index'])->name('examenes');
+});

@@ -15,11 +15,11 @@ class CreateNoticiasTable extends Migration
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
-            $table->UnsignedBigInteger('usuario_id');
+            $table->UnsignedBigInteger('user_id');
             $table->string('titulo')->unique();
             $table->string('descripcion')->nullable();
             $table->timestamps();
-            $table->foreign('usuario_id')
+            $table->foreign('user_id')
                    ->references('id')
                    ->on('users')
                    ->delete('cascade');

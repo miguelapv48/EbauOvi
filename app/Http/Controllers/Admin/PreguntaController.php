@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Preguntas;  
-use App\Models\Tesst;
-use App\Models\Respuestas; 
+use App\Models\Pregunta;  
+use App\Models\Examen;
+use App\Models\Respuesta; 
 use Illuminate\Support\Facades\Auth;
 
-class PreguntasController extends Controller
+class PreguntaController extends Controller
 {
     public function __contruct(){
             $this->middleware('auth');
@@ -22,7 +22,7 @@ class PreguntasController extends Controller
      */
     public function index()
     {
-        $preguntas = Preguntas::all();
+        $preguntas = Pregunta::all();
         return view("admin.preguntas.index", compact("preguntas"));
     }
 
@@ -33,13 +33,13 @@ class PreguntasController extends Controller
      */
     public function create()
     {
-        $pregunta = new Preguntas;
-        $title = __("Crear Preguntas");
+        $pregunta = new Pregunta;
+        $title = __("Crear Pregunta");
         $textButton = __("Crear");
         $route = route("admin.preguntas.store");
-        $tessts = Tesst::all();
+        $examenes = Examen::all();
         $respuestas = [];
-        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","tessts","respuestas"));
+        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","examenes","respuestas"));
     }
 
     /**
@@ -51,10 +51,10 @@ class PreguntasController extends Controller
     public function store(Request $request) //Request recoge los datos del formulario
     {
         $this->validate($request, [
-            "pregunta" => "required|max:140",
-            "id_test" => "required"
+            "titulo" => "required|max:140",
+            "examen_id" => "required"
         ]);
-       $pregunta=Preguntas::create($request->only("pregunta","id_test"));
+       $pregunta=Pregunta::create($request->only("titulo","examen_id"));
 
        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1]);
        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2, 'correcta' =>$request->correcta2]);
@@ -84,16 +84,16 @@ class PreguntasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Preguntas $pregunta)
+    public function edit(Pregunta $pregunta)
     {
         $update = true;
         $title = __("Editar Pregunta");
         $textButton = __("Actualizar Pregunta");
-        $tessts=Tesst::all();
-        $respuestas=Respuestas::where('preguntas_id','=', $pregunta->id)->get();
+        $examenes=Examen::all();
+        $respuestas=Respuesta::where('pregunta_id','=', $pregunta->id)->get();
         //dd($respuestas);
         $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
-        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","tessts","respuestas"));
+        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","examenes","respuestas"));
     }
 
     /**
@@ -103,13 +103,13 @@ class PreguntasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Preguntas $pregunta)
+    public function update(Request $request, Pregunta $pregunta)
     {
         $this->validate($request, [
-            "pregunta" => "required",
+            "titulo" => "required",
             "id_test" => "required"
         ]);
-        $pregunta->fill($request->only("pregunta"))->save();
+        $pregunta->fill($request->only("titulo"))->save();
 
         $pregunta->respuestas()->delete();
 
@@ -129,7 +129,7 @@ class PreguntasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Preguntas $pregunta)
+    public function destroy(Pregunta $pregunta)
     {
         $pregunta->delete();
         return back()->with("success",__("¡Pregunta eliminada!"));

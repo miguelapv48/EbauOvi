@@ -319,22 +319,22 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Listar Noticias',
+            'text' => 'Listar Noticia',
             'url'  => 'admin/noticias',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => ' Listar Preguntas',
+            'text' => ' Listar Pregunta',
             'url'  => 'admin/preguntas',
             'icon' => 'far fa-fw fa-file',
         ],
         [
             'text' => ' Listar Test',
-            'url'  => 'admin/tesst',
+            'url'  => 'admin/examen',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => ' Listar Asignaturas',
+            'text' => ' Listar Asignatura',
             'url'  => 'admin/asignaturas',
             'icon' => 'far fa-fw fa-file',
         ],

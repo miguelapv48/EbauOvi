@@ -11,22 +11,22 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
-                        {{ __('Asignaturas') }}
+                        {{ __('Asignatura') }}
                     </x-jet-nav-link>
-                </div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                </div><div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
-                        {{ __('Noticias') }}
+                        {{ __('Noticia') }}
                     </x-jet-nav-link>
                 </div>
                 @can('admin.home')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-6 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
                         {{ __('Panel de Administrador') }}
                     </x-jet-nav-link>
