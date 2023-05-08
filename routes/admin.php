@@ -14,6 +14,6 @@ Route::middleware('can:admin.home')->group(function () {
     Route::resource('users', UsuariosController::class)->names('admin.users');
     Route::resource('noticias', NoticiaController::class)->names('admin.noticias');
     Route::resource('preguntas', PreguntaController::class)->names('admin.preguntas');
-    Route::resource('examen', ExamenController::class)->names('admin.examen');
+    Route::resource('examenes', ExamenController::class)->parameters(['examenes' => 'examen'])->names('admin.examenes');
     Route::resource('asignaturas', AsignaturaController::class)->names('admin.asignaturas');
 });

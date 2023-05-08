@@ -329,8 +329,8 @@ return [
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => ' Listar Test',
-            'url'  => 'admin/examen',
+            'text' => ' Listar Exámenes',
+            'url'  => 'admin/examenes',
             'icon' => 'far fa-fw fa-file',
         ],
         [
