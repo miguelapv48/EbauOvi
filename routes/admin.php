@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ExamenController;
 use App\Http\Controllers\Admin\AsignaturaController;
 
 
-Route::middleware('can:admin')->group(function () {
+Route::middleware('can:admin.home')->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('admin.home');
 
     Route::resource('users', UsuariosController::class)->names('admin.users');
