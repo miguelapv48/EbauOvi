@@ -14,7 +14,7 @@ class PreguntaController extends Controller
      */
     public function index(int $id)
     {
-        $preguntas = Pregunta::where('examen_id', '=', $id);
+        $preguntas = Pregunta::where('examen_id', '=', $id)->get();
         return view('preguntas', compact('preguntas'));
     }
 }

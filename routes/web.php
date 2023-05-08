@@ -24,5 +24,4 @@ Route::middleware([
     Route::get('/examenes/{id}', [ExamenController::class, 'index'])->name('examenes');
     Route::get('/preguntas/{id}', [PreguntaController::class, 'index'])->name('preguntas');
     Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
-    Route::get('/examenes', [NoticiaController::class, 'index'])->name('examenes');
 });
