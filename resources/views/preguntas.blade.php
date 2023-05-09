@@ -4,17 +4,15 @@
             {{ __('Bienvenidos') }}
         </h2>
     </x-slot>
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @foreach($preguntas as $pregunta)
+        <div class="bg-white shadow-xl sm:rounded-lg p-4 mb-4">
+            <h3 class="text-lg">{{ $pregunta->titulo }}</h3>
+            @foreach($pregunta->respuestas as $respuesta)
+            <label class="block mb-2"><input type="radio" name="pregunta_{{ $pregunta->id}}"> {{ $respuesta->respuesta }}</label>
+            @endforeach
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-blue overflow-hidden shadow-xl sm:rounded-lg">
-               <p> @foreach($preguntas as $pregunta)</p>
-                    <a href="">{{ $pregunta->titulo }}</a>
-                  <p>  @foreach($pregunta->respuestas as $respuestas)</p>
-                      <p>  {{ $respuestas->respuesta }}</p>
-                    @endforeach
-                @endforeach
-            </div>
         </div>
+        @endforeach
     </div>
 </x-app-layout>
