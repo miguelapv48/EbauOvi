@@ -5,15 +5,16 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @forelse($tests as $test)
-                    <a href="{{ route('preguntas',$test->id) }}">{{ $test->nombre }}</a>
-                @empty
-                    No hay test de esta asignatura
-                @endforelse
-            </div>
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap gap-4">
+        @foreach($examenes as $examen)
+        <div class="bg-white shadow-xl sm:rounded-lg p-4">
+            <h3 class="text-lg">{{ $examen->nombre }}</h3>
+            <a class="block bg-indigo-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-4 rounded mt-4"
+                href="{{ route('preguntas',['id' => $examen->id]) }}">Hacer examen</a>
         </div>
+        @empty
+        <h3 class="text-xl">No hay examenes para esta asignatura</h3>
+        @endforeach
     </div>
+
 </x-app-layout>
