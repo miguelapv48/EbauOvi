@@ -23,7 +23,7 @@ class ExamenController extends Controller
     public function index()
     {
         $examen = Examen::all();
-        return view("admin.examen.index", compact('examen'));
+        return view("admin.examenes.index", compact('examen'));
     }
 
     /**
@@ -36,9 +36,9 @@ class ExamenController extends Controller
         $examen = new Examen;
         $title = __("Crear Test");
         $textButton = __("Crear");
-        $route = route("admin.examen.store");
+        $route = route("admin.examenes.store");
         $asignaturas = Asignatura::all();
-        return view("admin.examen.create", compact("title", "textButton", "route", "examen", "asignaturas"));
+        return view("admin.examenes.create", compact("title", "textButton", "route", "examen", "asignaturas"));
     }
 
     /**
@@ -55,7 +55,7 @@ class ExamenController extends Controller
         ]);
         Examen::create($request->only("nombre", "asignatura_id"));
 
-        return redirect(route("admin.examen.index"))
+        return redirect(route("admin.examenes.index"))
             ->with("success", __("¡Test creado"));
     }
 
@@ -81,9 +81,9 @@ class ExamenController extends Controller
         $update = true;
         $title = __("Editar Examen");
         $textButton = __("Actualizar Test");
-        $route = route("admin.examen.update", ["examen" => $examen]);
+        $route = route("admin.examenes.update", ["examen" => $examen]);
         $asignaturas = Asignatura::all();
-        return view("admin.examen.edit", compact("update", "title", "textButton", "route", "examen", "asignaturas"));
+        return view("admin.examenes.edit", compact("update", "title", "textButton", "route", "examen", "asignaturas"));
     }
 
     /**
