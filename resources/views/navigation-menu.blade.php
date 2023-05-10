@@ -18,11 +18,11 @@
                 </div>
                 <div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
-                        {{ __('Asignatura') }}
+                        {{ __('Asignaturas') }}
                     </x-jet-nav-link>
                 </div><div class="hidden space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
-                        {{ __('Noticia') }}
+                        {{ __('Noticias') }}
                     </x-jet-nav-link>
                 </div>
                 @can('admin.home')

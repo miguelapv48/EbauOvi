@@ -18,7 +18,7 @@ class Asignatura extends Model
         'nombre'
     ];
 
-    public function examen()
+    public function examenes()
     {
         return $this->hasMany(Examen::class);
     }

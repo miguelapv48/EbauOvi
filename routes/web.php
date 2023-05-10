@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\ExamenController;
-use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\NoticiaController;
 
 Route::get('/', function () {
@@ -21,7 +20,9 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas');
-    Route::get('/examenes/{id}', [ExamenController::class, 'index'])->name('examenes');
-    Route::get('/preguntas/{id}', [PreguntaController::class, 'index'])->name('preguntas');
+    Route::get('/asignaturas/{id}', [AsignaturaController::class, 'show'])->name('asignatura');
+    Route::get('/examenes/{id}', [ExamenController::class, 'show'])->name('examen');
+    Route::post('/examenes/{id}', [ExamenController::class, 'entregar'])->name('entregar_examen');
+    Route::get('/examenes/{id}/resultado', [ExamenController::class, 'resultado'])->name('resultado_examen');
     Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
 });

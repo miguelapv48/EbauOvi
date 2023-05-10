@@ -16,6 +16,11 @@ class AsignaturaController extends Controller
     public function index()
     {
         $asignaturas = Asignatura::all();
-        return view('asignaturas', compact('asignaturas'));
+        return view('asignaturas.index', compact('asignaturas'));
+    }
+    public function show(int $id)
+    {
+        $asignatura = Asignatura::with('examenes')->find($id);
+        return view('asignaturas.show', compact('asignatura'));
     }
 }

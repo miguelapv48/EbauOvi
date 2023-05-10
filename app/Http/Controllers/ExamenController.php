@@ -13,10 +13,10 @@ class ExamenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $id)
+    public function show(int $id)
     {
-        $examenes = Examen::where('asignatura_id', '=', $id)->get();
-        return view('examenes', compact('examenes'));
+        $examen = Examen::with(['preguntas', 'preguntas.respuestas'])->find($id);
+        return view('examenes.show', compact('examen'));
     }
 
 }

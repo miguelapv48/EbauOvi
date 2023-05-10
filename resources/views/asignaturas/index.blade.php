@@ -9,7 +9,8 @@
         @foreach($asignaturas as $asignatura)
         <div class="bg-white shadow-xl sm:rounded-lg p-4">
             <h3 class="text-lg">{{ $asignatura->nombre }}</h3>
-            <a class="block bg-indigo-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-4 rounded mt-4" href="{{ route('examenes',['id' =>$asignatura->id]) }}">Ver examenes</a>
+            <a class="block bg-indigo-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-4 rounded mt-4"
+                href="{{ route('asignatura',['id' =>$asignatura->id]) }}">Ver examenes</a>
         </div>
         @endforeach
     </div>
