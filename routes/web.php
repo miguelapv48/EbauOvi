@@ -25,4 +25,5 @@ Route::middleware([
     Route::post('/examenes/{id}', [ExamenController::class, 'entregar'])->name('entregar_examen');
     Route::get('/examenes/{id}/resultado', [ExamenController::class, 'resultado'])->name('resultado_examen');
     Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias');
+    Route::get('/noticias/{id}', [NoticiaController::class, 'show'])->name('noticia');
 });

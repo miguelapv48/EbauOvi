@@ -1,21 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-800 leading-tight">
-            {{ __('Bienvenido a las noticias de EbauOvi') }}
+            {{ __('Noticias de EbauOvi') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> 
+    <div class="max-w-7xl mx-auto py-8 px-4">
+        <div class="grid grid-cols-[repeat(auto-fill,_250px)] gap-6">
             @foreach ($noticias as $noticia)
-                <article class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2  @endif" >
-                    <div class="w-full h-full px-8 flex flex-col justify-center">
-                        <h1 class="text-4xl text-blue-400 leading-8 font-bold">
-                            <a href="">
-                            {{ $noticia->titulo}}
-                            </a>
-                        </h1>
-                    </div> 
-                </article>
+            <article class="bg-white shadow-xl sm:rounded-lg p-4">
+                <h3 class="font-bold">
+                    <a href="{{ route('noticia',['id' => $noticia->id]) }}">
+                        {{ $noticia->titulo}}
+                    </a>
+                </h3>
+                <p class="mt-2 text-gray-800">
+                    {{ $noticia->descripcion}}
+                </p>
+            </article>
             @endforeach
         </div>
     </div>

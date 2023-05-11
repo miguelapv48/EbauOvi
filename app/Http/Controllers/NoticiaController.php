@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Noticia;
+
 class NoticiaController extends Controller
 {
     /**
@@ -17,9 +18,9 @@ class NoticiaController extends Controller
         return view("noticias.index", compact("noticias"));
     }
 
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $noticia = Noticia::find($id);
+        return view('noticias.show', compact('noticia'));
     }
-
 }
