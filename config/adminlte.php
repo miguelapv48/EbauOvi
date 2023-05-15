@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -314,27 +314,17 @@ return [
        
         ['header' => 'Opciones'],
         [
-            'text' => 'Listar Usuarios',
+            'text' => 'Usuarios',
             'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Listar Noticia',
+            'text' => 'Noticias',
             'url'  => 'admin/noticias',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => ' Listar Pregunta',
-            'url'  => 'admin/preguntas',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => ' Listar Exámenes',
-            'url'  => 'admin/examenes',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => ' Listar Asignatura',
+            'text' => ' Asignaturas',
             'url'  => 'admin/asignaturas',
             'icon' => 'far fa-fw fa-file',
         ],
