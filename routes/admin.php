@@ -13,7 +13,7 @@ Route::middleware('can:admin.home')->group(function () {
 
     Route::resource('users', UsuariosController::class)->names('admin.users');
     Route::resource('noticias', NoticiaController::class)->names('admin.noticias');
-    Route::resource('preguntas', PreguntaController::class)->names('admin.preguntas');
-    Route::resource('examenes', ExamenController::class)->parameters(['examenes' => 'examen'])->names('admin.examenes');
-    Route::resource('asignaturas', AsignaturaController::class)->names('admin.asignaturas');
+    Route::resource('asignaturas', AsignaturaController::class)->names('admin.asignaturas')->except(['show']);
+    Route::resource('asignaturas.examenes', ExamenController::class)->parameters(['examenes' => 'examen'])->names('admin.examenes')->except(['show', 'index']);
+    Route::resource('asignaturas.examenes.preguntas', PreguntaController::class)->parameters(['examenes' => 'examen'])->names('admin.preguntas')->only(['store', 'update', 'destroy']);
 });

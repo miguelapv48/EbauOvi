@@ -290,29 +290,10 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-       
-        ['header' => 'Opciones'],
         [
             'text' => 'Usuarios',
             'url'  => 'admin/users',
@@ -326,7 +307,7 @@ return [
         [
             'text' => ' Asignaturas',
             'url'  => 'admin/asignaturas',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-pen',
         ],
     ],
 

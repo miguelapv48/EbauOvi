@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Asignatura;  
+use App\Models\Asignatura;
 use Illuminate\Support\Facades\Auth;
+
 class AsignaturaController extends Controller
 {
-    public function __contruct(){
-            $this->middleware('auth');
-        }
+    public function __contruct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,7 @@ class AsignaturaController extends Controller
     public function index()
     {
         $asignaturas = Asignatura::all();
-        return view("admin.asignaturas.index",compact('asignaturas'));
+        return view("admin.asignaturas.index", compact('asignaturas'));
     }
 
     /**
@@ -31,9 +33,9 @@ class AsignaturaController extends Controller
     {
         $asignatura = new Asignatura;
         $title = __("Crear Asignatura");
-        $textButton = __("Crear Asignatura");
+        $textButton = __("Crear");
         $route = route("admin.asignaturas.store");
-        return view("admin.asignaturas.create",compact("title","textButton","route","asignatura"));
+        return view("admin.asignaturas.create", compact("title", "textButton", "route", "asignatura"));
     }
 
     /**
@@ -47,21 +49,10 @@ class AsignaturaController extends Controller
         $this->validate($request, [
             "nombre" => "required|max:140",
         ]);
-        Asignatura::create($request->only("nombre"));
+        $asignatura = Asignatura::create($request->only("nombre"));
 
-        return redirect(route("admin.asignaturas.index"))
-        ->with("success",__("¡Asignatura  creada"));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect(route("admin.asignaturas.edit", ["asignatura" => $asignatura]))
+            ->with("success", __("¡Asignatura  creada"));
     }
 
     /**
@@ -74,9 +65,9 @@ class AsignaturaController extends Controller
     {
         $update = true;
         $title = __("Editar Asignatura");
-        $textButton = __("Actualizar Asignatura");
+        $textButton = __("Guardar");
         $route = route("admin.asignaturas.update", ["asignatura" => $asignatura]);
-        return view("admin.asignaturas.edit", compact("update","title","textButton","route","asignatura"));
+        return view("admin.asignaturas.edit", compact("update", "title", "textButton", "route", "asignatura"));
     }
 
     /**
@@ -92,8 +83,8 @@ class AsignaturaController extends Controller
             "nombre" => "required|unique:asignaturas"
         ]);
         $asignatura->fill($request->only("nombre"))->save();
-        return redirect(route("admin.asignaturas.index"))
-            ->with("success",__("¡Asignatura actualizada!"));
+        return back()
+            ->with("success", __("¡Asignatura actualizada!"));
     }
 
     /**
@@ -105,7 +96,6 @@ class AsignaturaController extends Controller
     public function destroy(Asignatura $asignatura)
     {
         $asignatura->delete();
-        return back()->with("success",__("Asignatura eliminada!"));
+        return back()->with("success", __("Asignatura eliminada!"));
     }
 }
-

@@ -4,7 +4,8 @@
             {{ $examen->nombre }}
         </h2>
     </x-slot>
-    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <form class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @csrf
         @foreach($examen->preguntas as $pregunta)
         <div class="bg-white shadow-xl sm:rounded-lg p-4 mb-4">
             <h3 class="text-lg">{{ $pregunta->titulo }}</h3>
@@ -17,5 +18,10 @@
 
         </div>
         @endforeach
-    </div>
+        <div class="text-right">
+            <button type="submit" class="bg-indigo-500 focus:shadow-outline focus:outline-none text-white py-3 px-4 rounded mt-4">
+                Terminar examen
+            </button>
+        </div>
+    </form>
 </x-app-layout>

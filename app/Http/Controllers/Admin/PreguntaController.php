@@ -4,42 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Asignatura;
 use Illuminate\Http\Request;
-use App\Models\Pregunta;  
+use App\Models\Pregunta;
 use App\Models\Examen;
-use App\Models\Respuesta; 
+use App\Models\Respuesta;
 use Illuminate\Support\Facades\Auth;
 
 class PreguntaController extends Controller
 {
-    public function __contruct(){
-            $this->middleware('auth');
-        }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __contruct()
     {
-        $preguntas = Pregunta::all();
-        return view("admin.preguntas.index", compact("preguntas"));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $pregunta = new Pregunta;
-        $title = __("Crear Pregunta");
-        $textButton = __("Crear");
-        $route = route("admin.preguntas.store");
-        $examenes = Examen::all();
-        $respuestas = [];
-        return view("admin.preguntas.create",compact("title","textButton","route","pregunta","examenes","respuestas"));
+        $this->middleware('auth');
     }
 
     /**
@@ -48,52 +24,21 @@ class PreguntaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //Request recoge los datos del formulario
+    public function store(Asignatura $asignatura, Examen $examen, Request $request) //Request recoge los datos del formulario
     {
-        $this->validate($request, [
-            "titulo" => "required|max:140",
-            "examen_id" => "required"
+        $pregunta = Pregunta::create([
+            "titulo" => '',
+            "examen_id" => $examen->id
         ]);
-       $pregunta=Pregunta::create($request->only("titulo","examen_id"));
 
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2, 'correcta' =>$request->correcta2]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3, 'correcta' =>$request->correcta3]);
-       $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4, 'correcta' =>$request->correcta4]);
+        for ($i = 0; $i < 4; $i++) {
+            $pregunta->respuestas()->create(['respuesta' => '', 'correcta' => false]);
+        }
 
-       $pregunta->save();
+        $pregunta->save();
 
-        return redirect(route("admin.preguntas.index"))
-        ->with("success",__("¡Pregunta creada!"));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pregunta $pregunta)
-    {
-        $update = true;
-        $title = __("Editar Pregunta");
-        $textButton = __("Actualizar Pregunta");
-        $examenes=Examen::all();
-        $respuestas=Respuesta::where('pregunta_id','=', $pregunta->id)->get();
-        //dd($respuestas);
-        $route = route("admin.preguntas.update",["pregunta" => $pregunta]);
-        return view("admin.preguntas.edit", compact("update","title","textButton","route","pregunta","examenes","respuestas"));
+        return redirect(route("admin.examenes.edit", ["asignatura" => $asignatura, "examen" => $examen]))
+            ->with("success", __("¡Pregunta creada!"));
     }
 
     /**
@@ -103,24 +48,22 @@ class PreguntaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pregunta $pregunta)
+    public function update(Asignatura $asignatura, Examen $examen, Pregunta $pregunta, Request $request)
     {
-        $this->validate($request, [
-            "titulo" => "required",
-            "id_test" => "required"
-        ]);
-        $pregunta->fill($request->only("titulo"))->save();
+        $pregunta->titulo = $request->get('titulo') ?? '';
 
-        $pregunta->respuestas()->delete();
+        $respuestas = $request->get('respuestas');
+        $correcta = $request->get('correcta');
 
-        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta1, 'correcta' =>$request->correcta1]);
-        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta2, 'correcta' =>$request->correcta2]);
-        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta3, 'correcta' =>$request->correcta3]);
-        $pregunta->respuestas()->create(['respuesta' =>$request->respuesta4, 'correcta' =>$request->correcta4]);
+        foreach ($pregunta->respuestas as $respuesta) {
+            $respuesta->respuesta = $respuestas[$respuesta->id] ?? '';
+            $respuesta->correcta = $respuesta->id == $correcta;
+            $respuesta->save();
+        }
 
         $pregunta->save();
 
-        return back()->with("success",__("¡Pregunta actualizada!"));
+        return back()->with("success", __("¡Pregunta actualizada!"));
     }
 
     /**
@@ -129,9 +72,9 @@ class PreguntaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pregunta $pregunta)
+    public function destroy(Asignatura $asignatura, Examen $examen, Pregunta $pregunta)
     {
         $pregunta->delete();
-        return back()->with("success",__("¡Pregunta eliminada!"));
+        return back()->with("success", __("¡Pregunta eliminada!"));
     }
 }

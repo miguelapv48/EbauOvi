@@ -15,30 +15,19 @@ class ExamenController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $examen = Examen::all();
-        return view("admin.examenes.index", compact('examen'));
-    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Asignatura $asignatura)
     {
-        $examen = new Examen;
+        $examen = new Examen();
         $title = __("Crear Test");
         $textButton = __("Crear");
-        $route = route("admin.examenes.store");
-        $asignaturas = Asignatura::all();
-        return view("admin.examenes.create", compact("title", "textButton", "route", "examen", "asignaturas"));
+        $route = route("admin.examenes.store", ["asignatura" => $asignatura]);
+        return view("admin.examenes.create", compact("title", "textButton", "route", "examen", "asignatura"));
     }
 
     /**
@@ -47,27 +36,19 @@ class ExamenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //Request recoge los datos del formulario
+    public function store(Asignatura $asignatura, Request $request) //Request recoge los datos del formulario
     {
         $this->validate($request, [
-            "nombre" => "required|max:140",
-            "asignatura_id" => "required"
+            "nombre" => "required|max:140"
         ]);
-        Examen::create($request->only("nombre", "asignatura_id"));
 
-        return redirect(route("admin.examenes.index"))
+        $examen = Examen::create([
+            "nombre" => $request->get("nombre"),
+            "asignatura_id" => $asignatura->id
+        ]);
+
+        return redirect(route("admin.examenes.edit", ["asignatura" => $asignatura, "examen" => $examen]))
             ->with("success", __("¡Test creado"));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -76,14 +57,13 @@ class ExamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Examen $examen)
+    public function edit(Asignatura $asignatura, Examen $examen)
     {
         $update = true;
         $title = __("Editar Examen");
-        $textButton = __("Actualizar Test");
-        $route = route("admin.examenes.update", ["examen" => $examen]);
-        $asignaturas = Asignatura::all();
-        return view("admin.examenes.edit", compact("update", "title", "textButton", "route", "examen", "asignaturas"));
+        $textButton = __("Guardar");
+        $route = route("admin.examenes.update", ["asignatura" => $asignatura, "examen" => $examen]);
+        return view("admin.examenes.edit", compact("update", "title", "textButton", "route", "examen", "asignatura"));
     }
 
     /**
@@ -93,12 +73,15 @@ class ExamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examen $examen)
+    public function update(Asignatura $asignatura, Examen $examen, Request $request)
     {
         $this->validate($request, [
             "nombre" => "required",
         ]);
-        $preguntas->fill($request->only("examen"))->save();
+
+        $examen->nombre = $request->get("nombre");
+        $examen->save();
+
         return back()->with("success", __("¡Test actualizado!"));
     }
 
@@ -108,7 +91,7 @@ class ExamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Examen $examen)
+    public function destroy(Asignatura $asignatura, Examen $examen)
     {
         $examen->delete();
         return back()->with("success", __("Test eliminado!"));
