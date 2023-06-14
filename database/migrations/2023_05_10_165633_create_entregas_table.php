@@ -25,7 +25,6 @@ return new class extends Migration {
                 ->references('id')
                 ->on('examenes')
                 ->onDelete('cascade');
-            $table->float("resultado");
             $table->unique(['user_id', 'examen_id']);
         });
     }

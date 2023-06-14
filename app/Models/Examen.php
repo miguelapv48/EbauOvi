@@ -30,4 +30,17 @@ class Examen extends Model
     {
         return $this->hasMany(Pregunta::class);
     }
+
+    public function respuestasCorrectas() {
+        $respuestas = [];
+
+        foreach ($this->preguntas as $pregunta) {
+            foreach ($pregunta->respuestas as $respuesta) {
+                if ($respuesta->correcta) {
+                    $respuestas[] = $respuesta;
+                }
+            }
+        }
+        return $respuestas;
+    }
 }
