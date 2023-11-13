@@ -10,13 +10,17 @@
         @foreach($examen->preguntas as $pregunta)
         <div class="bg-white shadow-xl sm:rounded-lg p-4 mb-4">
             <h3 class="text-lg">{{ $pregunta->titulo }}</h3>
-            @foreach($pregunta->respuestas as $respuesta)
-            <label class="block mb-2 flex items-center">
-                <input class="mr-2" type="radio" name="preguntas[{{ $pregunta->id}}]" value="{{ $respuesta->id }}">
-                {{ $respuesta->respuesta }}
-            </label>
-            @endforeach
-
+            <div class="flex ">
+                <div>
+                    @foreach($pregunta->respuestas as $respuesta)
+                    <label class="block mb-2 flex items-center">
+                        <input class="mr-2" type="radio" name="preguntas[{{ $pregunta->id}}]" value="{{ $respuesta->id }}">
+                        {{ $respuesta->respuesta }}
+                    </label>
+                    @endforeach
+                </div>
+                <div class="w-1/2 bg-cover" style="background-image:url(@if($pregunta->image) {{Storage::url($pregunta->image->url)}} @else https://cdn.pixabay.com/photo/2023/10/23/14/36/leaves-8336237_1280.jpg @endif)"></div>
+            </div>
         </div>
         @endforeach
         <div class="text-right">
