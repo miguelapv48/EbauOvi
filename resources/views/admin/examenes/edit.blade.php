@@ -58,6 +58,12 @@
                 </div>
             </div>
             @endforeach
+            <div class="row">
+                <div class="col w-1/2">
+                    <div class="image-wrapper">
+                    <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="">
+                </div>
+                <div class="col"></div>
 
             <div class="text-right">
                 <x-adminlte-button label="Guardar" type="submit" theme="primary" />
@@ -84,6 +90,18 @@
         </form>
     </div>
 </div>
-
-
+@section('css')
+<style>
+    .image-wrapper{
+        position: relative;
+        padding-bottom: 56.25%;
+    }
+    .image-wrapper img{
+        position: absolute;
+        object-fit: cover;
+        width: 50%;
+        height: 50%;
+    }
+</style>
+@stop
 @endsection
