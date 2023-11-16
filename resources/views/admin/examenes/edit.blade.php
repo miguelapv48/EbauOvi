@@ -97,10 +97,11 @@
         padding-bottom: 56.25%;
     }
     .image-wrapper img{
-        position: absolute;
+        position: relative;
         object-fit: cover;
         width: 50%;
         height: 50%;
+        float: right;
     }
 </style>
 @stop
