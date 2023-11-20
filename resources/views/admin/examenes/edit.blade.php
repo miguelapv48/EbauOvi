@@ -35,7 +35,7 @@
 
         <form
             action="{{ route('admin.preguntas.update', ['asignatura' => $asignatura, 'examen' => $examen, 'pregunta' => $pregunta]) }}"
-            method="POST">
+            method="POST" >
             @csrf
             @method('PUT')
 
@@ -45,29 +45,36 @@
             </div>
 
             <p>Respuestas</p>
-            @foreach ($pregunta->respuestas as $respuesta)
+            <div class="d-flex row">
+                <div class="w-75">
+                    @foreach ($pregunta->respuestas as $respuesta)
 
-            <div class="row d-flex aling-items-center">
-                <x-adminlte-input name="respuestas[{{$respuesta->id}}]" placeholder="Texto de la respuesta"
-                    fgroup-class="col-md-6" value="{{ $respuesta->respuesta }}" />
+                    <div class="row d-flex aling-items-center">
+                        <x-adminlte-input name="respuestas[{{$respuesta->id}}]" placeholder="Texto de la respuesta"
+                            fgroup-class="col-md-6" value="{{ $respuesta->respuesta }}" />
 
-                <div class="ml-4 form-group form-check form-check-inline">
-                    <label class="form-check-label" for="correcta[{{$respuesta->id}}]">Correcta:</label>
-                    <input class="form-check-input ml-2" type="radio" name="correcta" id="correcta[{{$respuesta->id}}]"
-                        @checked($respuesta->correcta) value="{{$respuesta->id}}" />
+                        <div class="ml-6 form-group form-check form-check-inline">
+                            <label class="form-check-label" for="correcta[{{$respuesta->id}}]">Correcta:</label>
+                            <input class="form-check-input ml-6" type="radio" name="correcta" id="correcta[{{$respuesta->id}}]"
+                                @checked($respuesta->correcta) value="{{$respuesta->id}}" />
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="w-25">
+                    
+                    <div class="image-wrapper">
+                        <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="">
+                    </div><br><br>
+                    <input type="file"><br><br>
                 </div>
             </div>
-            @endforeach
-            <div class="row">
-                <div class="col w-1/2">
-                    <div class="image-wrapper">
-                    <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="">
-                </div>
-                <div class="col"></div>
+            <div class="col"></div>
 
             <div class="text-right">
                 <x-adminlte-button label="Guardar" type="submit" theme="primary" />
             </div>
+                </div>
         </form>
     </div>
     @empty
@@ -94,14 +101,12 @@
 <style>
     .image-wrapper{
         position: relative;
-        padding-bottom: 56.25%;
     }
     .image-wrapper img{
         position: relative;
         object-fit: cover;
-        width: 50%;
-        height: 50%;
-        float: right;
+        width: 100%;
+        height: 100%;
     }
 </style>
 @stop
