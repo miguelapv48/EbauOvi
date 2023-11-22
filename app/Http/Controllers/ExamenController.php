@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Examen;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ExamenController extends Controller
 {
@@ -15,6 +16,9 @@ class ExamenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request){
+       return Storage::put("preguntas",  $request->file('file'));
+    }
     public function show(int $id)
     {
         $examen = Examen::with(['preguntas', 'preguntas.respuestas'])->find($id);
