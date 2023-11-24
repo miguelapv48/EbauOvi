@@ -16,8 +16,12 @@ class ExamenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-       return Storage::put("preguntas",  $request->file('file'));
+    public function store(StoreExamenRequest $request){
+        $post = Examen::create($request->all());
+        if($request->file('file')){
+            $url = Storage::put('post', $request->file('file'));
+        }
+        
     }
     public function show(int $id)
     {

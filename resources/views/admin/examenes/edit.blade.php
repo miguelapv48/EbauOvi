@@ -64,9 +64,9 @@
                 <div class="w-25">
                     
                     <div class="image-wrapper">
-                        <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="">
+                        <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="" id="picture">
                     </div><br><br>
-                    <input type="file"><br><br>
+                    <input id="file" type="file"><br><br>
                 </div>
             </div>
             <div class="col"></div>
@@ -97,6 +97,8 @@
         </form>
     </div>
 </div>
+@endsection
+
 @section('css')
 <style>
     .image-wrapper{
@@ -110,4 +112,17 @@
     }
 </style>
 @stop
-@endsection
+
+@section('js')
+<script>
+    document.getElementById("file").addEventListener('change' , cambiarImagen);
+    function cambiarImagen(event){
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = (event) => {
+            document.getElementById('picture').setAttribute('src', event.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
+</script>
+@stop
