@@ -66,7 +66,7 @@
                     <div class="image-wrapper">
                         <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="" id="picture">
                     </div><br><br>
-                    <input id="file" type="file"><br><br>
+                    <input id="file" type="file" name="imagen"><br><br>
                 </div>
             </div>
             <div class="col"></div>

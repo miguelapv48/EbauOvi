@@ -28,7 +28,7 @@ class Pregunta extends Model
         return $this->belongsTo(Examen::class);
     }
     //Relacion uno a uno polimorfica
-    public function imagen(){
+    public function imagens(){
         return $this->morphOne(Imagen::class,'imagenable');
     }
 }

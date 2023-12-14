@@ -10,6 +10,7 @@ use App\Models\Pregunta;
 use App\Models\Examen;
 use App\Models\Respuesta;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PreguntaController extends Controller
 {
@@ -33,6 +34,13 @@ class PreguntaController extends Controller
 
         for ($i = 0; $i < 4; $i++) {
             $pregunta->respuestas()->create(['respuesta' => '', 'correcta' => false]);
+        }
+
+        
+
+        if($request->file('imagen')){
+            $imagen=Storage::put('preguntas',$request->file('imagen'));
+            $pregunta->imagens()->create(['direccion'=>$imagen]);
         }
 
         $pregunta->save();
@@ -62,6 +70,11 @@ class PreguntaController extends Controller
         }
 
         $pregunta->save();
+
+        if($request->file('imagen')){
+            $imagen=Storage::put('preguntas',$request->file('imagen'));
+            $pregunta->imagens()->create(['direccion'=>$imagen]);
+        }
 
         return back()->with("success", __("¡Pregunta actualizada!"));
     }
