@@ -35,7 +35,7 @@
 
         <form
             action="{{ route('admin.preguntas.update', ['asignatura' => $asignatura, 'examen' => $examen, 'pregunta' => $pregunta]) }}"
-            method="POST" >
+            method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -64,8 +64,12 @@
                 <div class="w-25">
                     
                     <div class="image-wrapper">
-                        <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="" id="picture">
-                    </div><br><br>
+                        @isset ($pregunta->imagens)
+                            <img src="{{ Storage::url($pregunta->imagens->direccion)}}" alt="" id="picture">
+                        @else
+                            <img src="https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg" alt="" id="picture">
+                        @endisset
+                        </div><br><br>
                     <input id="file" type="file" name="imagen"><br><br>
                 </div>
             </div>

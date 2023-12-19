@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('imagen', function (Blueprint $table) {
+        Schema::create('imagens', function (Blueprint $table) {
             $table->id();
             $table->string('direccion');
 
             $table->unsignedBigInteger('imagenable_id');
-            $table->string('imaginable_type');
+            $table->string('imagenable_type');
 
             $table->timestamps();
         });

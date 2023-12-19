@@ -19,7 +19,7 @@
                     </label>
                     @endforeach
                 </div>
-                <div class="w-1/2 bg-cover" style="background-image:url(@if($pregunta->image) {{Storage::url($pregunta->image->url)}} @else https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg @endif)"></div>
+                <div class="w-1/2 bg-cover" style="background-image:url(@if($pregunta->imagens) {{Storage::url($pregunta->imagens->direccion)}} @else https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg @endif)"></div>
             </div>
         </div>
         @endforeach
